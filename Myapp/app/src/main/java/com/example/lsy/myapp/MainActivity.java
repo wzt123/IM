@@ -6,6 +6,7 @@ import android.widget.RadioGroup;
 import android.widget.RadioButton;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.content.Context;
 
 
 
@@ -13,7 +14,7 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
 
     private RadioGroup rg_tab_bar;
     private RadioButton rb1,rb2,rb3;
-
+    private Context mContext;
     private MyFragment1 fg1;
     private MyFragment2 fg2;
     private MyFragment3 fg3;

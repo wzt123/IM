@@ -16,6 +16,7 @@
     <color name="bg_gray">#d1d0d0</color>
     <color name="bg_gray1">#80ececec</color>
     <color name="bg_white_a">#c8fcfcfc</color>
+    <color name="bg_pink">#f137de</color>
     /////////////////字体颜色
     <color name="text_black">#494949</color>
     <color name="text_gray">#c4c4c4</color>

@@ -42,6 +42,7 @@
         android:background="@color/bg_white"
         android:orientation="horizontal">
         <EditText
+            android:id="@+id/et"
             android:layout_marginLeft="5dp"
             android:layout_width="0dp"
             android:layout_height="40dp"
@@ -49,6 +50,7 @@
             android:background="@drawable/shape_post"
             android:layout_gravity="center"/>
         <Button
+            android:id="@+id/btsend"
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_weight="1"
@@ -59,10 +61,17 @@
             android:layout_marginRight="5dp"/>
 
     </LinearLayout>
-    <ListView
+    <!--<ListView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_above="@id/chat_bottom_bar"-->
+        <!--android:layout_below="@id/chat_top_bar"-->
+        <!--android:background="@color/bg_white"></ListView>-->
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recylerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/chat_bottom_bar"
         android:layout_below="@id/chat_top_bar"
-        android:background="@color/bg_white"></ListView>
+        android:background="@color/bg_white"/>
 </RelativeLayout>

@@ -3,19 +3,15 @@ package com.example.lsy.myapp;
 /**
  * Created by lsy on 2017/5/27.
  */
-
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
+import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.os.Bundle;
 import android.widget.ImageButton;
+import android.content.Intent;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
+import android.view.View.OnClickListener;
 
 
 public class MyFragment3 extends Fragment implements OnClickListener {
@@ -37,11 +33,6 @@ public class MyFragment3 extends Fragment implements OnClickListener {
         RelativeLayout arounding=(RelativeLayout)getActivity().findViewById(R.id.arounding);
         arounding.setOnClickListener(this);
 
-        SharedPreferences sp =MyAppLication.getInstance().getSharedPreferences("sp_demo", Context.MODE_PRIVATE);
-        if(sp.getInt("userId",0)!=0) {
-            TextView login_text = (TextView) getActivity().findViewById(R.id.login_text);
-            login_text.setText(sp.getString("userName", "Hello world"));
-        }
     }
     public void onClick(View v){
         switch (v.getId()){

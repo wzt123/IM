@@ -4,8 +4,6 @@ package com.example.lsy.myapp;
  * Created by zet on 2017/5/25.
  */
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
@@ -71,15 +69,6 @@ public class connectMysql {
                     ResultSet rs = stmt.executeQuery(sql);
                     Message message = Message.obtain();
                     message.obj = rs;
-
-                    SharedPreferences sp = MyAppLication.getInstance().getSharedPreferences("sp_demo", Context.MODE_PRIVATE);
-                    SharedPreferences.Editor mEditor = sp.edit();
-                    mEditor.putInt("userId",rs.getInt("id"));
-                    mEditor.putInt("userTel",rs.getInt("tel"));
-                    mEditor.putString("userName",rs.getString("name"));
-                    mEditor.putString("userPassword",rs.getString("pswd"));
-                    mEditor.commit();
-
                     handler.sendMessage(message);
 
                     rs.close();
@@ -111,16 +100,6 @@ public class connectMysql {
                     Statement stmt = conn.createStatement();
                     String sql ="SELECT * FROM personal WHERE tel='" + String.valueOf(tel)+" ';";
                     ResultSet rs = stmt.executeQuery(sql);
-
-                    SharedPreferences sp = MyAppLication.getInstance().getSharedPreferences("sp_demo", Context.MODE_PRIVATE);
-                    SharedPreferences.Editor mEditor = sp.edit();
-                    mEditor.putInt("addingFriendId",rs.getInt("id"));
-                    mEditor.putInt("addingFriendTel",rs.getInt("tel"));
-                    mEditor.putString("addingFriendName",rs.getString("name"));
-
-                    ///mEditor.putString("userPassword",rs.getString("pswd"));
-                    mEditor.commit();
-
                     Message message = Message.obtain();
                     message.obj = rs;
                     handler.sendMessage(message);

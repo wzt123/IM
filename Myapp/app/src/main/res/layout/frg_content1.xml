@@ -32,40 +32,12 @@
             android:background="@color/div_white" />
 
     </RelativeLayout>
-    <RelativeLayout
-        android:id="@+id/message1"
+    <ListView
+        android:id="@+id/message_list"
         android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:clickable="true"
-        android:background="@drawable/clicked_bg">
-        <ImageButton
-            android:id="@+id/friend1_name_pic"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@mipmap/ic_launcher_round"/>
-        <TextView
-            android:id="@+id/friend1_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/friend1_name"
-            android:textColor="@color/text_black"
-            android:layout_toRightOf="@+id/friend1_name_pic"
-            android:textSize="18sp"
-            android:layout_marginLeft="10dp"/>
-        <TextView
-            android:id="@+id/message1_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/message_text"
-            android:textColor="@color/text_gray"
-            android:layout_below="@+id/friend1_name"
-            android:layout_alignLeft="@+id/friend1_name"
-            android:textSize="18sp"/>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:background="@color/bg_gray"
-            android:layout_alignParentBottom="true"/>
-    </RelativeLayout>
+        android:layout_height="match_parent"
+        android:divider="@color/bg_gray"
+        android:dividerHeight="0.5dp">
+    </ListView>
 
 </LinearLayout>
