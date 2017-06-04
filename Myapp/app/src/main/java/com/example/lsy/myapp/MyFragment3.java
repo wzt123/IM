@@ -69,4 +69,11 @@ public class MyFragment3 extends Fragment implements OnClickListener {
         }
     }
 
+    private boolean judgeLogin(){
+        SharedPreferences sp =MyAppLication.getInstance().getSharedPreferences("sp_demo", Context.MODE_PRIVATE);
+        if(sp.getInt("userId",0)!=0) {
+            return true;
+        }
+        return false;
+    }
 }

@@ -50,7 +50,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/bg_white"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:weightSum="1">
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="20dp"
@@ -80,6 +81,34 @@
                             android:layout_alignBottom="@+id/add_friend_edit"
                             android:layout_marginLeft="5dp"/>
                     </RelativeLayout>
+
+                    <Button
+                        android:id="@+id/add_friend_ensure"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="findFriend"
+                        android:text="查找" />
+
+                    <TextView
+                        android:id="@+id/add_friend_tel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="TextView"
+                        android:layout_weight="0.07" />
+
+                    <TextView
+                        android:id="@+id/add_friend_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="TextView"
+                        android:layout_weight="0.07" />
+
+                    <Button
+                        android:id="@+id/add_friend_add"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="addFriend"
+                        android:text="添加" />
                 </LinearLayout>
                 <LinearLayout
                     android:id="@+id/tab2"

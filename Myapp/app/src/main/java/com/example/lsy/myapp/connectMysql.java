@@ -22,8 +22,12 @@ public class connectMysql {
 
     static final String USER = "wzt";
     static final String PASS = "123456";
-    public connectMysql(){
 
+    private int userId;
+
+    public connectMysql(){
+        SharedPreferences sp =MyAppLication.getInstance().getSharedPreferences("sp_demo", Context.MODE_PRIVATE);
+        userId = sp.getInt("userId",0);
     }
     public void userRegister(int tel, String name, String pswd,Handler handler)
     {
@@ -57,7 +61,8 @@ public class connectMysql {
         }.start();
     }
 
-    public void userLogin(int tel, String pswd,Handler handler){
+    public void userLogin(int tel, String pswd,Handler handler)
+    {
         new Thread()
         {
             public void run() {
@@ -74,10 +79,12 @@ public class connectMysql {
 
                     SharedPreferences sp = MyAppLication.getInstance().getSharedPreferences("sp_demo", Context.MODE_PRIVATE);
                     SharedPreferences.Editor mEditor = sp.edit();
-                    mEditor.putInt("userId",rs.getInt("id"));
-                    mEditor.putInt("userTel",rs.getInt("tel"));
-                    mEditor.putString("userName",rs.getString("name"));
-                    mEditor.putString("userPassword",rs.getString("pswd"));
+                    if(rs.next()) {
+                        mEditor.putInt("userId", rs.getInt("id"));
+                        mEditor.putInt("userTel", rs.getInt("tel"));
+                        mEditor.putString("userName", rs.getString("name"));
+                        mEditor.putString("userPassword", rs.getString("pswd"));
+                    }
                     mEditor.commit();
 
                     handler.sendMessage(message);
@@ -98,7 +105,7 @@ public class connectMysql {
 
     }
 
-    public void addFriend(int tel,Handler handler)
+    public void findFriend(int tel,Handler handler)
     {
         new Thread()
         {
@@ -114,10 +121,11 @@ public class connectMysql {
 
                     SharedPreferences sp = MyAppLication.getInstance().getSharedPreferences("sp_demo", Context.MODE_PRIVATE);
                     SharedPreferences.Editor mEditor = sp.edit();
-                    mEditor.putInt("addingFriendId",rs.getInt("id"));
-                    mEditor.putInt("addingFriendTel",rs.getInt("tel"));
-                    mEditor.putString("addingFriendName",rs.getString("name"));
-
+                    if(rs.next()) {
+                        mEditor.putInt("addingFriendId", rs.getInt("id"));
+                        mEditor.putInt("addingFriendTel", rs.getInt("tel"));
+                        mEditor.putString("addingFriendName", rs.getString("name"));
+                    }
                     ///mEditor.putString("userPassword",rs.getString("pswd"));
                     mEditor.commit();
 
@@ -140,4 +148,99 @@ public class connectMysql {
         }.start();
     }
 
+    public void addFriend(int friendId,String friendGroup,Handler handler)
+    {
+        new Thread()
+        {
+            public void run() {
+                try {
+                    //注册驱动
+                    Class.forName("com.mysql.jdbc.Driver");
+
+                    Connection conn = DriverManager.getConnection(DB_URL,USER,PASS);
+                    Statement stmt = conn.createStatement();
+                    String sql = "insert into  addFriendMsg(requester,accepter,requesterGroup) values("+String.valueOf(userId)+","+String.valueOf(friendId)+","+friendGroup+");";
+                    int rs = stmt.executeUpdate(sql);
+                    Message message = Message.obtain();
+                    message.arg1 = rs;
+                    handler.sendMessage(message);
+
+                    //rs.close();
+                    stmt.close();
+                    conn.close();
+                    Log.v("yzy", "success to connect!");
+                }catch(ClassNotFoundException e)
+                {
+                    Log.v("yzy", "fail to connect!"+"  "+e.getMessage());
+                } catch (SQLException e)
+                {
+                    Log.v("yzy", "fail to connect!"+"  "+e.getMessage());
+                }
+            };
+        }.start();
+    }
+    public void addFriendGroup(Handler handler)
+    {
+
+        new Thread()
+        {
+            public void run() {
+                try {
+                    //注册驱动
+                    Class.forName("com.mysql.jdbc.Driver");
+
+                    Connection conn = DriverManager.getConnection(DB_URL,USER,PASS);
+                    Statement stmt = conn.createStatement();
+                    String sql = "insert into  friendGroup(ownerId,groupName,groupOrder) values("+String.valueOf(userId)+","+"我的好友"+","+String.valueOf(0)+");";
+                    int rs = stmt.executeUpdate(sql);
+                    Message message = Message.obtain();
+                    message.arg1 = rs;
+                    handler.sendMessage(message);
+
+                    //rs.close();
+                    stmt.close();
+                    conn.close();
+                    Log.v("yzy", "success to connect!");
+                }catch(ClassNotFoundException e)
+                {
+                    Log.v("yzy", "fail to connect!"+"  "+e.getMessage());
+                } catch (SQLException e)
+                {
+                    Log.v("yzy", "fail to connect!"+"  "+e.getMessage());
+                }
+            };
+        }.start();
+    }
+
+    public void addFriendGroup(String groupName, Handler handler)
+    {
+        new Thread()
+        {
+            public void run() {
+                try {
+                    //注册驱动
+                    Class.forName("com.mysql.jdbc.Driver");
+
+                    Connection conn = DriverManager.getConnection(DB_URL,USER,PASS);
+                    Statement stmt = conn.createStatement();
+                    String sql = "insert into  friendGroup(ownerId,groupName,groupOrder) values("+String.valueOf(userId)+","+groupName+","+String.valueOf(0)+");";
+                    int rs = stmt.executeUpdate(sql);
+                    Message message = Message.obtain();
+                    message.arg1 = rs;
+                    handler.sendMessage(message);
+
+                    //rs.close();
+                    stmt.close();
+                    conn.close();
+                    Log.v("yzy", "success to connect!");
+                }catch(ClassNotFoundException e)
+                {
+                    Log.v("yzy", "fail to connect!"+"  "+e.getMessage());
+                } catch (SQLException e)
+                {
+                    Log.v("yzy", "fail to connect!"+"  "+e.getMessage());
+                }
+            };
+        }.start();
+    }
 }

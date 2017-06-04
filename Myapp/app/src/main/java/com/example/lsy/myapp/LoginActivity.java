@@ -66,29 +66,6 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
                 if (msg.obj != null) {
                     ResultSet rs = (ResultSet) msg.obj;
                     new AlertDialog.Builder(LoginActivity.this).setTitle("提示").setMessage("登录成功").setPositiveButton("确定", null).show();
-//                    SharedPreferences sp = MyAppLication.getInstance().getSharedPreferences("sp_demo", Context.MODE_PRIVATE);
-//                    SharedPreferences.Editor mEditor = sp.edit();
-//                    try {
-//                        mEditor.putInt("userId",rs.getInt("id"));
-//                    } catch (SQLException e) {
-//                        e.printStackTrace();
-//                    }
-//                    try {
-//                        mEditor.putInt("userTel",rs.getInt("tel"));
-//                    } catch (SQLException e) {
-//                        e.printStackTrace();
-//                    }
-//                    try {
-//                        mEditor.putString("userName",rs.getString("name"));
-//                    } catch (SQLException e) {
-//                        e.printStackTrace();
-//                    }
-//                    try {
-//                        mEditor.putString("userPassword",rs.getString("pswd"));
-//                    } catch (SQLException e) {
-//                        e.printStackTrace();
-//                    }
-//                    mEditor.commit();
                     Intent it1 = new Intent(LoginActivity.this,MainActivity.class);
                     it1.putExtra("temp",1);
                     startActivity(it1);
