@@ -1,4 +1,4 @@
-package com.example.lsy.myapp;
+﻿package com.example.lsy.myapp;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -65,8 +65,6 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
                 super.handleMessage(msg);
                 if (msg.obj != null) {
                     new AlertDialog.Builder(LoginActivity.this).setTitle("提示").setMessage("登录成功").setPositiveButton("确定", null).show();
-                    SharedPreferences sp = getSharedPreferences("sp_demo", Context.MODE_PRIVATE);
-                    sp.edit().putString("name", "小张").putInt("age", 11).commit();
                     Intent it1 = new Intent(LoginActivity.this,MainActivity.class);
                     it1.putExtra("temp",1);
                     startActivity(it1);

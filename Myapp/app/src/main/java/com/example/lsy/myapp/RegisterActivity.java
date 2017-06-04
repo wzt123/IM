@@ -44,12 +44,15 @@ public class RegisterActivity extends AppCompatActivity {
         mPasswordd_1 = (EditText) findViewById(R.id.pswd1);
         mPasswordd_2 = (EditText) findViewById(R.id.pswd2);
         final int rs = 2;
+        connectMysql connection = new connectMysql();
+        connection.userRegister(Integer.parseInt(mTel.getText().toString()),mName.getText().toString(),mPasswordd_1.getText().toString(),handler);
         handler = new Handler() {
             @Override
             public void handleMessage(Message msg) {
                 super.handleMessage(msg);
                 if (msg.arg1 == 1) {
                     new AlertDialog.Builder(RegisterActivity.this).setTitle("提示").setMessage("注册成功").setPositiveButton("确定", null).show();
+                    connection.addFriendGroup(handler);
                 }
                 else
                 {
@@ -63,8 +66,7 @@ public class RegisterActivity extends AppCompatActivity {
 //        }
 //        else
 //        {
-            connectMysql connection = new connectMysql();
-            connection.userRegister(Integer.parseInt(mTel.getText().toString()),mName.getText().toString(),mPasswordd_1.getText().toString(),handler);
+
 //        }
 
     }
