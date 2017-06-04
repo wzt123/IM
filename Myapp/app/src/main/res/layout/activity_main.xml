@@ -1,0 +1,49 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_bottom_menu"
+    tools:context=".MainActivity">
+
+    <RadioGroup
+        android:id="@+id/rg_tab_bar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/bg_bottom_menu"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_message"
+            style="@style/tab_menu_item"
+            android:drawableTop="@drawable/bottom_btn_message"
+            android:text="@string/bottom_btn_message" />
+        <RadioButton
+            android:id="@+id/rb_friends"
+            style="@style/tab_menu_item"
+            android:drawableTop="@drawable/bottom_btn_friends"
+            android:text="@string/bottom_btn_friends" />
+        <RadioButton
+            android:id="@+id/rb_personal"
+            style="@style/tab_menu_item"
+            android:drawableTop="@drawable/bottom_btn_personal"
+            android:text="@string/bottom_btn_personal" />
+
+    </RadioGroup>
+
+    <View
+        android:id="@+id/div_tab_bar"
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:layout_above="@id/rg_tab_bar"
+        android:background="@color/div_white" />
+
+    <FrameLayout
+        android:id="@+id/ly_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/div_tab_bar" >
+        <!--//android:layout_below="@id/ly_top_bar"-->
+   </FrameLayout>
+
+</RelativeLayout>

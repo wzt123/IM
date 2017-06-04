@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#4397fd</color>
+    <color name="colorPrimaryDark">#4397fd</color>
+    <color name="colorAccent">#FF4081</color>
+    /////////////////底部导航栏
+    <color name="bottom_btn_text_pressed">#4397fd</color>
+    <color name="bottom_btn_text_normal">#bfc1c1</color>
+    <color name="bg_bottom_menu">#fcfcfc</color>
+    /////////////////顶部文字
+    <color name="bg_topbar">#55abf5</color>
+    /////////////////分割线色
+    <color name="div_white">#f4f3f3</color>
+    /////////////////背景色
+    <color name="bg_white">#fcfcfc</color>
+    <color name="bg_gray">#d1d0d0</color>
+    <color name="bg_gray1">#80ececec</color>
+    <color name="bg_white_a">#c8fcfcfc</color>
+    /////////////////字体颜色
+    <color name="text_black">#494949</color>
+    <color name="text_gray">#c4c4c4</color>
+    
+</resources>

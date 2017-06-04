@@ -1,0 +1,52 @@
+<resources>
+    <string name="app_name">Myapp</string>
+    <string name="bottom_btn_message">消息</string>
+    <string name="bottom_btn_friends">好友</string>
+    <string name="bottom_btn_personal">我的</string>
+    <string name="login">登录</string>
+    <string name="attention">特别关心</string>
+    <string name="arounding">附近</string>
+    <string name="games">游戏</string>
+    <string name="found">发现</string>
+    <string name="night">夜间模式</string>
+    <string name="more_setting">更多设置</string>
+    <string name="check_to_update">检查更新</string>
+    <string name="present_version">已是最新6.3.0</string>
+    <string name="found_adver">人气旅游美食攻略</string>
+    <string name="title_activity_login">Sign in</string>
+    <string name="find">搜索</string>
+    <string name="new_friends">新朋友</string>
+    <!-- Strings related to login -->
+    <string name="login_tel">Tel</string>
+    <string name="login_password">Password</string>
+    <string name="tel">Tel</string>
+    <string name="name">Name</string>
+    <string name="pswd2">Confirm password</string>
+    <string name="pswd1">Password</string>
+    <string name="register_button">注册</string>
+    <string name="action_sign_in">登录</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email completions.</string>
+    <string name="close">关闭</string>
+    <string name="register">注册</string>
+    <string name="attention_text1">你还没有特别关心哦，快去添加吧......</string>
+    ///////Fragment2
+    <string name="sousuo">搜索</string>
+    <string name="new_group">创建群</string>
+    <string name="official_accounts">我的世界</string>
+    ///////add_friends////
+    <string name="add">添加</string>
+    <string name="telnum">手机号</string>
+    ///////fragment1/////////
+    <string name="message_text">Hello,Jack</string>
+    <string name="friend1_name">奥巴马</string>
+    <string name="title_activity_my_attention">MyAttentionActivity</string>
+    <string name="hehe">呵呵</string>
+    <string name="post">发送</string>
+
+
+</resources>
