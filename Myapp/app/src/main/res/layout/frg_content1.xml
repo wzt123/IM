@@ -32,6 +32,40 @@
             android:background="@color/div_white" />
 
     </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/message_find"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:clickable="true">
+        <Button
+            android:id="@+id/button_sousuo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="6dp"
+            />
+        <!--android:background="@color/bg_gray1"-->
+        <ImageView
+            android:id="@+id/sousuo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/top_button_find1"
+            android:layout_centerVertical="true"
+            android:layout_alignLeft="@+id/button_sousuo"
+            android:paddingLeft="10dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sousuo"
+            android:textColor="@color/text_gray"
+            android:layout_toRightOf="@id/sousuo"
+            android:layout_centerVertical="true"
+            android:textSize="20sp"
+            android:paddingLeft="5dp"/>
+    </RelativeLayout>
     <ListView
         android:id="@+id/message_list"
         android:layout_width="match_parent"

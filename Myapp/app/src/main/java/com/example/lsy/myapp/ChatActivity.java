@@ -15,6 +15,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 
@@ -36,6 +37,14 @@ public class ChatActivity extends AppCompatActivity {
         Intent intent=getIntent();
         String name=intent.getStringExtra("name");
         chatfriendname.setText(name);
+        ImageButton chat_setting =(ImageButton) findViewById(R.id.chat_setting);
+        chat_setting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent it=new Intent(ChatActivity.this, ChatSettingActivity.class);
+                startActivity(it);
+            }
+        });
         recyclerView = (RecyclerView) findViewById(R.id.recylerView);
         et = (EditText) findViewById(R.id.et);
         tvSend = (TextView) findViewById(R.id.btsend);
