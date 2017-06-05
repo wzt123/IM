@@ -52,17 +52,22 @@ public class RegisterActivity extends AppCompatActivity {
                 super.handleMessage(msg);
                 if (msg.arg1 == 1) {
                     new AlertDialog.Builder(RegisterActivity.this).setTitle("提示").setMessage("注册成功").setPositiveButton("确定", null).show();
-                    connection.addFriendGroup(handler);
-                    Intent it = new Intent(RegisterActivity.this,LoginActivity.class);
-                    startActivity(it);
-                    finish();
+                    ///connection.addFriendGroup(handler);
                 }
                 else
                 {
                     new  AlertDialog.Builder(RegisterActivity.this).setTitle("提示" ).setMessage("注册失败" ).setPositiveButton("确定" ,  null ).show();
                 }
-
             }
         };
+//        if(mPasswordd_1.getText().toString().equals(mPasswordd_2.getText().toString()))
+//        {
+//            new  AlertDialog.Builder(this).setTitle("错误" ).setMessage("两次输入密码不同" ).setPositiveButton("确定" ,  null ).show();
+//        }
+//        else
+//        {
+
+//        }
+
     }
 }
