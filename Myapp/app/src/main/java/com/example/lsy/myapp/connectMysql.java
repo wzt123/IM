@@ -40,34 +40,11 @@ public class connectMysql {
 
                     Connection conn = DriverManager.getConnection(DB_URL,USER,PASS);
                     Statement stmt = conn.createStatement();
-
                     String sql = "insert into  personal(tel,name,pswd) values("+String.valueOf(tel)+","+"'"+name+"'"+","+"'"+pswd+"'"+");";
                     int rs = stmt.executeUpdate(sql);
-
-                    if(rs==1)
-                    {
-                        sql = "SELECT * FROM personal WHERE tel='" + String.valueOf(tel)+"' AND pswd='"+pswd+" ';";
-                        ResultSet rss = stmt.executeQuery(sql);
-
-                        SharedPreferences sp = MyAppLication.getInstance().getSharedPreferences("sp_demo", Context.MODE_PRIVATE);
-                        SharedPreferences.Editor mEditor = sp.edit();
-                        if(rss.next()) {
-                            mEditor.putInt("userId", rss.getInt("id"));
-                            mEditor.putInt("userTel", rss.getInt("tel"));
-                            mEditor.putString("userName", rss.getString("name"));
-                            mEditor.putString("userPassword", rss.getString("pswd"));
-                        }
-                        mEditor.commit();
-
-                        sql ="insert into  friendGroup(ownerId,groupName,groupOrder) values("+String.valueOf(rss.getInt("id"))+","+"'myFriend'"+","+String.valueOf
-                                (0)+");";
-                        rs = stmt.executeUpdate(sql);
-                    }
-
                     Message message = Message.obtain();
                     message.arg1 = rs;
                     handler.sendMessage(message);
-
                     //rs.close();
                     stmt.close();
                     conn.close();
@@ -215,7 +192,7 @@ public class connectMysql {
                     Connection conn = DriverManager.getConnection(DB_URL,USER,PASS);
                     Statement stmt = conn.createStatement();
                     String sql = "insert into  friendGroup(ownerId,groupName,groupOrder) values("+String.valueOf(userId)+","+groupName+","+String.valueOf
-                            (0)+");";
+                            (1)+");";
                     int rs = stmt.executeUpdate(sql);
 
                     Message message = Message.obtain();
@@ -236,4 +213,42 @@ public class connectMysql {
             };
         }.start();
     }
+
+    public void addFriendGroup(Handler handler)
+    {
+        SharedPreferences sp =MyAppLication.getInstance().getSharedPreferences("sp_demo", Context.MODE_PRIVATE);
+        userId = sp.getInt("userId",0);
+        new Thread()
+        {
+            public void run() {
+                try {
+                    //注册驱动
+                    Class.forName("com.mysql.jdbc.Driver");
+
+                    Connection conn = DriverManager.getConnection(DB_URL,USER,PASS);
+                    Statement stmt = conn.createStatement();
+                    String sql = "insert into  friendGroup(ownerId,groupName,groupOrder) values("+String.valueOf(userId)+","+"'我的好友'"+","+String.valueOf
+                            (0)+");";
+                    int rs = stmt.executeUpdate(sql);
+                    if(rs==1)
+                    {
+                        Message message = Message.obtain();
+                        message.arg1 = 2;
+                        handler.sendMessage(message);
+                    }
+                    //rs.close();
+                    stmt.close();
+                    conn.close();
+                    Log.v("yzy", "success to connect!");
+                }catch(ClassNotFoundException e)
+                {
+                    Log.v("yzy", "fail to connect!"+"  "+e.getMessage());
+                } catch (SQLException e)
+                {
+                    Log.v("yzy", "fail to connect!"+"  "+e.getMessage());
+                }
+            };
+        }.start();
+    }
+
 }
