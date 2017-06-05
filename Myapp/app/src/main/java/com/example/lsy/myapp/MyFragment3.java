@@ -82,4 +82,14 @@ public class MyFragment3 extends Fragment implements OnClickListener {
         }
         return false;
     }
+    public void LogOut(){
+        SharedPreferences sp =MyAppLication.getInstance().getSharedPreferences("sp_demo", Context.MODE_PRIVATE);
+        SharedPreferences.Editor mEditor = sp.edit();
+        mEditor.remove("userId");
+        mEditor.remove("userTel");
+        mEditor.remove("userName");
+        mEditor.remove("userPassword");
+        mEditor.commit();
+    }
+
 }
