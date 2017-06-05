@@ -65,7 +65,7 @@ public class MyFragment3 extends Fragment implements OnClickListener {
                     }).setPositiveButton("确定", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-
+                                    LogOut();
                                 }
                             }).create();             //创建AlertDialog对象
 
