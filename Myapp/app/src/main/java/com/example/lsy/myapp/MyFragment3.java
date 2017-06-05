@@ -3,15 +3,18 @@ package com.example.lsy.myapp;
 /**
  * Created by lsy on 2017/5/27.
  */
-import android.support.v4.app.Fragment;
-import android.view.View;
-import android.view.LayoutInflater;
-import android.view.ViewGroup;
-import android.os.Bundle;
-import android.widget.ImageButton;
+
+import android.content.Context;
 import android.content.Intent;
-import android.widget.RelativeLayout;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 
 
 public class MyFragment3 extends Fragment implements OnClickListener {

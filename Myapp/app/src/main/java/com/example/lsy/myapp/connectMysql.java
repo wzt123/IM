@@ -4,6 +4,8 @@
  * Created by zet on 2017/5/25.
  */
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
