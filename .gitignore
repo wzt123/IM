@@ -2,3 +2,5 @@ Myapp/.idea/
 Myapp/.gradle/
 Myapp/build/
 Myapp/Myapp.iml
+Myapp/app/app.iml
+Myapp/local.properties
