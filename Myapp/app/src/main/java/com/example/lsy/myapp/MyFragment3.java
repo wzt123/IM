@@ -15,6 +15,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 
 public class MyFragment3 extends Fragment implements OnClickListener {
@@ -36,6 +37,11 @@ public class MyFragment3 extends Fragment implements OnClickListener {
         RelativeLayout arounding=(RelativeLayout)getActivity().findViewById(R.id.arounding);
         arounding.setOnClickListener(this);
 
+        SharedPreferences sp =MyAppLication.getInstance().getSharedPreferences("sp_demo", Context.MODE_PRIVATE);
+        if(sp.getInt("userId",0)!=0) {
+            TextView login_text = (TextView) getActivity().findViewById(R.id.login_text);
+            login_text.setText(sp.getString("userName", "Hello world"));
+        }
     }
     public void onClick(View v){
         switch (v.getId()){
