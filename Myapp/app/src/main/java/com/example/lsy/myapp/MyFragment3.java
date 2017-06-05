@@ -4,11 +4,15 @@ package com.example.lsy.myapp;
  * Created by lsy on 2017/5/27.
  */
 
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -16,6 +20,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class MyFragment3 extends Fragment implements OnClickListener {
@@ -47,8 +52,39 @@ public class MyFragment3 extends Fragment implements OnClickListener {
         switch (v.getId()){
             case R.id.head_pic:
                 if(judgeLogin()){
-                    Intent it = new Intent(getActivity(),MyDataActivity.class);
-                    startActivity(it);
+//                    Intent it = new Intent(getActivity(),MyDataActivity.class);
+//                    startActivity(it);
+                    AlertDialog.Builder  builder=new AlertDialog.Builder(getContext());
+                    builder.setMessage("确定要退出登录么？");
+
+                    builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    }).setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    LogOut();
+                                }
+                            }).create();             //创建AlertDialog对象
+
+                    //builder创建对话框对象AlertDialog
+                    AlertDialog simpledialog=builder.create();
+                    simpledialog.show();
+//                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext(),R.style.AlertDialog);
+//                    builder.setMessage("撤销该记录?").setCancelable(false).setTitle("提示")
+//                            .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+//                                public void onClick(DialogInterface dialog, int id) {
+//                                    dialog.cancel();
+//                                }
+//                            })
+//                            .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+//                                public void onClick(DialogInterface dialog, int id) {
+//                                    dialog.cancel();
+//                                }
+//                            });
+//                    builder.show();
                 }
                 else {
                     Intent it = new Intent(getActivity(), LoginActivity.class);
