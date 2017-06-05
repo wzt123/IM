@@ -53,6 +53,9 @@ public class RegisterActivity extends AppCompatActivity {
                 if (msg.arg1 == 1) {
                     new AlertDialog.Builder(RegisterActivity.this).setTitle("提示").setMessage("注册成功").setPositiveButton("确定", null).show();
                     ///connection.addFriendGroup(handler);
+                    Intent it = new Intent(RegisterActivity.this,LoginActivity.class);
+                    startActivity(it);
+                    finish();
                 }
                 else
                 {
