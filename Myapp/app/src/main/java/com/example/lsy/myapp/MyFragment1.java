@@ -11,16 +11,19 @@ import android.view.View;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.os.Bundle;
+import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.view.View.OnClickListener;
 import android.widget.ListView;
 
 import java.util.LinkedList;
+import java.util.Map;
+
 import android.app.Activity;
 
 
-public class MyFragment1 extends Fragment implements OnClickListener{
+public class MyFragment1 extends Fragment {
     private Context mContext;
     private LinkedList<Message> mData = null;
     private MessageAdapter mAdapter = null;
@@ -34,12 +37,8 @@ public class MyFragment1 extends Fragment implements OnClickListener{
     }
     public void onActivityCreated(Bundle savedInstanceState){
         super.onActivityCreated(savedInstanceState);
-//        ListView message1=(ListView) getActivity().findViewById(R.id.message_list);
-//        message1.setOnClickListener(this);
-        ///////////////////////
         mContext = getContext();
         messagelist = (ListView) getActivity().findViewById(R.id.message_list);
-        //messagelist.setOnClickListener(this);
         mData = new LinkedList<Message>();
         mData.add(new Message("狗说", "你是狗么?", R.mipmap.ic_launcher_round));
         mData.add(new Message("牛说", "你是牛么?", R.mipmap.ic_launcher_round));
@@ -48,20 +47,19 @@ public class MyFragment1 extends Fragment implements OnClickListener{
         mData.add(new Message("马说", "你是马么?", R.mipmap.ic_launcher_round));
         mAdapter = new MessageAdapter((LinkedList<Message>) mData,mContext);
         messagelist.setAdapter(mAdapter);
+        messagelist.setOnItemClickListener(new AdapterView.OnItemClickListener(){
 
-    }
-    public void onClick(View v){
-        String name;
-        switch (v.getId()){
-            case R.id.message_list:
-                name=this.getString(R.string.friend1_name);
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // TODO Auto-generated method stub
+                String name=mData.get(position).getaName();
                 Intent it1=new Intent(getActivity(),ChatActivity.class);
                 it1.putExtra("name",name);
                 startActivity(it1);
-                break;
-            default:break;
-        }
-    }
+            }
 
+        });
+
+    }
 
 }

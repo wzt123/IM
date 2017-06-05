@@ -3,6 +3,8 @@ package com.example.lsy.myapp;
 /**
  * Created by lsy on 2017/5/27.
  */
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.v4.app.Fragment;
 import android.view.View;
 import android.view.LayoutInflater;
