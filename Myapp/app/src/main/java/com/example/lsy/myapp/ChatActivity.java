@@ -4,6 +4,7 @@ package com.example.lsy.myapp;
  */
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -30,7 +31,11 @@ public class ChatActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_chat);
+        TextView chatfriendname=(TextView) findViewById(R.id.chat_friend_name) ;
+        Intent intent=getIntent();
+        String name=intent.getStringExtra("name");
+        chatfriendname.setText(name);
         recyclerView = (RecyclerView) findViewById(R.id.recylerView);
         et = (EditText) findViewById(R.id.et);
         tvSend = (TextView) findViewById(R.id.btsend);

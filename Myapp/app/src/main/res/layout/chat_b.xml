@@ -27,7 +27,7 @@
         android:paddingLeft="8dp"
         android:paddingBottom="6dp"
         android:gravity="center"
-        android:background="@color/bg_pink"
+        android:background="@drawable/shape_message_b"
         android:layout_toLeftOf="@+id/ic_user"
         android:layout_marginRight="8dp"/>
 

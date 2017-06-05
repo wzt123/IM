@@ -46,9 +46,15 @@ public class MyFragment3 extends Fragment implements OnClickListener {
     public void onClick(View v){
         switch (v.getId()){
             case R.id.head_pic:
-                Intent it = new Intent(getActivity(),LoginActivity.class);
-                startActivity(it);
-                //关闭第一个Activit
+                if(judgeLogin()){
+                    Intent it = new Intent(getActivity(),MyDataActivity.class);
+                    startActivity(it);
+                }
+                else {
+                    Intent it = new Intent(getActivity(), LoginActivity.class);
+                    startActivity(it);
+                    //关闭第一个Activit
+                }
                 break;
             case R.id.attention:
                 Intent it1 = new Intent(getActivity(),MyAttentionActivity.class);
