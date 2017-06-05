@@ -10,12 +10,12 @@ tools:context="com.example.lsy.myapp.MainActivity">
         android:layout_height="50dp"
         android:background="@color/bg_white">
         <Button
-            android:id="@+id/friend_find_close"
+            android:id="@+id/friend_find_start"
             android:layout_width="60dp"
             android:layout_height="match_parent"
             android:background="@color/bg_white"
             android:layout_alignParentRight="true"
-            android:text="@string/close"
+            android:text="@string/start"
             android:textColor="@color/bg_topbar"
             android:textSize="18sp"/>
         <EditText
@@ -30,7 +30,7 @@ tools:context="com.example.lsy.myapp.MainActivity">
             android:textColorHint="@color/bg_gray"
             android:textColor="@color/text_black"
             android:paddingLeft="35dp"
-            android:layout_toLeftOf="@+id/friend_find_close"
+            android:layout_toLeftOf="@+id/friend_find_start"
             />
         <ImageView
             android:layout_width="wrap_content"

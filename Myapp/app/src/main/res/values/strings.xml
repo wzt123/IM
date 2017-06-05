@@ -32,6 +32,7 @@
     <string name="error_field_required">This field is required</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email completions.</string>
     <string name="close">关闭</string>
+    <string name="start">开始</string>
     <string name="register">注册</string>
     <string name="attention_text1">你还没有特别关心哦，快去添加吧......</string>
     ///////Fragment2
@@ -47,6 +48,15 @@
     <string name="title_activity_my_attention">MyAttentionActivity</string>
     <string name="hehe">呵呵</string>
     <string name="post">发送</string>
+    ///////////////聊天设置
+    <string name="chat_setting">聊天设置</string>
+    <string name="chat_histroy">聊天记录</string>
+    <string name="chat_dictory">聊天文件</string>
+    <string name="chat_background">聊天背景</string>
+    <string name="pingbi">屏蔽此人</string>
+    <string name="add_a_shortcut">添加桌面快捷方式</string>
+    <string name="delete_friend">删除好友</string>
+
 
 
 </resources>
