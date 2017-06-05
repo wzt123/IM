@@ -31,7 +31,7 @@ public class ChatActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_chat);
         TextView chatfriendname=(TextView) findViewById(R.id.chat_friend_name) ;
         Intent intent=getIntent();
         String name=intent.getStringExtra("name");

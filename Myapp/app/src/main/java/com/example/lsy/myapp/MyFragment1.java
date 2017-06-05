@@ -16,10 +16,8 @@ import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.view.View.OnClickListener;
 import android.widget.ListView;
-
 import java.util.LinkedList;
 import java.util.Map;
-
 import android.app.Activity;
 
 
@@ -48,7 +46,6 @@ public class MyFragment1 extends Fragment {
         mAdapter = new MessageAdapter((LinkedList<Message>) mData,mContext);
         messagelist.setAdapter(mAdapter);
         messagelist.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // TODO Auto-generated method stub
