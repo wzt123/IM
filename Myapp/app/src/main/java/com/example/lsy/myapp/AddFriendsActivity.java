@@ -1,5 +1,6 @@
 package com.example.lsy.myapp;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -17,6 +18,7 @@ public class AddFriendsActivity extends AppCompatActivity {
     protected Handler handler;
     private  TextView add_friend_tel = (TextView) findViewById(R.id.add_friend_tel);
     private  TextView add_friend_name = (TextView) findViewById(R.id.add_friend_name);
+    private  EditText add_friend_edit = (EditText) findViewById(R.id.add_friend_edit);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,5 +57,23 @@ public class AddFriendsActivity extends AppCompatActivity {
 
     public void addFriend(){
 
+        connectMysql connection = new connectMysql();
+        connection.addFriend(Integer.parseInt(add_friend_edit.getText().toString()),"我的好友",handler);
+        //connection.findFriendGroup(handler);
+        handler = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                if(msg.arg1==1){
+                    new AlertDialog.Builder(AddFriendsActivity.this).setTitle("提示").setMessage("请求加好友成功").setPositiveButton("确定", null).show();
+                    ///返回聊天界面
+                }
+                else {
+                    new AlertDialog.Builder(AddFriendsActivity.this).setTitle("提示").setMessage("请求加好友失败了T_T").setPositiveButton("确定", null).show();
+                    //返回
+                }
+            }
+        };
+        //connection.addFriend(handler);
     }
 }

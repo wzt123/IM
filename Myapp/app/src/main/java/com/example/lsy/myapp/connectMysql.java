@@ -251,4 +251,34 @@ public class connectMysql {
         }.start();
     }
 
+    public void findFriendGroup(Handler handler)
+    {
+        new Thread()
+        {
+            public void run() {
+                try {
+                    //注册驱动
+                    Class.forName("com.mysql.jdbc.Driver");
+
+                    Connection conn = DriverManager.getConnection(DB_URL,USER,PASS);
+                    Statement stmt = conn.createStatement();
+                    String sql = "SELECT * FROM personal WHERE ownerId=" + String.valueOf(userId)+ ";";
+                    ResultSet rs = stmt.executeQuery(sql);
+                    Message message = Message.obtain();
+                    message.obj = rs;
+                    handler.sendMessage(message);
+                    //rs.close();
+                    stmt.close();
+                    conn.close();
+                    Log.v("yzy", "success to connect!");
+                }catch(ClassNotFoundException e)
+                {
+                    Log.v("yzy", "fail to connect!"+"  "+e.getMessage());
+                } catch (SQLException e)
+                {
+                    Log.v("yzy", "fail to connect!"+"  "+e.getMessage());
+                }
+            };
+        }.start();
+    }
 }
