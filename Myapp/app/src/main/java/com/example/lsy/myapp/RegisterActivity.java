@@ -2,7 +2,9 @@ package com.example.lsy.myapp;
 
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -51,11 +53,23 @@ public class RegisterActivity extends AppCompatActivity {
             public void handleMessage(Message msg) {
                 super.handleMessage(msg);
                 if (msg.arg1 == 1) {
+                    connection.userLogin(Integer.parseInt(mTel.getText().toString()),mPasswordd_1.getText().toString(),handler);
+                }
+                else if(msg.arg1 == 2)
+                {
                     new AlertDialog.Builder(RegisterActivity.this).setTitle("提示").setMessage("注册成功").setPositiveButton("确定", null).show();
-                    ///connection.addFriendGroup(handler);
                     Intent it = new Intent(RegisterActivity.this,LoginActivity.class);
                     startActivity(it);
                     finish();
+                }
+                else if(msg.obj != null)
+                {
+                    SharedPreferences sp = MyAppLication.getInstance().getSharedPreferences("sp_demo", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor mEditor = sp.edit();
+                    if(sp.getInt("userId",0)!=0)
+                    {
+                        connection.addFriendGroup(handler);
+                    }
                 }
                 else
                 {
@@ -63,14 +77,5 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             }
         };
-//        if(mPasswordd_1.getText().toString().equals(mPasswordd_2.getText().toString()))
-//        {
-//            new  AlertDialog.Builder(this).setTitle("错误" ).setMessage("两次输入密码不同" ).setPositiveButton("确定" ,  null ).show();
-//        }
-//        else
-//        {
-
-//        }
-
     }
 }
