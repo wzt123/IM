@@ -40,7 +40,7 @@ public class connectMysql {
 
                     Connection conn = DriverManager.getConnection(DB_URL,USER,PASS);
                     Statement stmt = conn.createStatement();
-                    String sql = "insert into  personal(tel,name,pswd) values("+String.valueOf(tel)+","+name+","+pswd+");";
+                    String sql = "insert into  personal(tel,name,pswd) values("+String.valueOf(tel)+","+"'"+name+"'"+","+"'"+pswd+"'"+");";
                     int rs = stmt.executeUpdate(sql);
                     Message message = Message.obtain();
                     message.arg1 = rs;
