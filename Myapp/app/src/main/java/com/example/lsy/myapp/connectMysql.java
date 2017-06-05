@@ -128,6 +128,7 @@ public class connectMysql {
                     }
                     ///mEditor.putString("userPassword",rs.getString("pswd"));
                     mEditor.commit();
+
                     Message message = Message.obtain();
                     message.obj = rs;
                     handler.sendMessage(message);
@@ -158,7 +159,8 @@ public class connectMysql {
 
                     Connection conn = DriverManager.getConnection(DB_URL,USER,PASS);
                     Statement stmt = conn.createStatement();
-                    String sql = "insert into  addFriendMsg(requester,accepter,requesterGroup) values("+String.valueOf(userId)+","+String.valueOf(friendId)+","+friendGroup+");";
+                    String sql = "insert into  addFriendMsg(requester,accepter,requesterGroup) values("+String.valueOf(userId)+","+String.valueOf
+                            (friendId)+","+friendGroup+");";
                     int rs = stmt.executeUpdate(sql);
                     Message message = Message.obtain();
                     message.arg1 = rs;
@@ -190,7 +192,8 @@ public class connectMysql {
 
                     Connection conn = DriverManager.getConnection(DB_URL,USER,PASS);
                     Statement stmt = conn.createStatement();
-                    String sql = "insert into  friendGroup(ownerId,groupName,groupOrder) values("+String.valueOf(userId)+","+"我的好友"+","+String.valueOf(0)+");";
+                    String sql = "insert into  friendGroup(ownerId,groupName,groupOrder) values("+String.valueOf(userId)+","+"我的好友"+","+String.valueOf
+                            (0)+");";
                     int rs = stmt.executeUpdate(sql);
                     Message message = Message.obtain();
                     message.arg1 = rs;
@@ -222,7 +225,8 @@ public class connectMysql {
 
                     Connection conn = DriverManager.getConnection(DB_URL,USER,PASS);
                     Statement stmt = conn.createStatement();
-                    String sql = "insert into  friendGroup(ownerId,groupName,groupOrder) values("+String.valueOf(userId)+","+groupName+","+String.valueOf(0)+");";
+                    String sql = "insert into  friendGroup(ownerId,groupName,groupOrder) values("+String.valueOf(userId)+","+groupName+","+String.valueOf
+                            (0)+");";
                     int rs = stmt.executeUpdate(sql);
                     Message message = Message.obtain();
                     message.arg1 = rs;
