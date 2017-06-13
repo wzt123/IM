@@ -253,7 +253,7 @@ public class connectMysql {
         }.start();
     }
 
-    public void findFriendGroup(Handler handler)
+    public void findFriendGroup(Handler handler,int userId)
     {
         new Thread()
         {
@@ -266,9 +266,9 @@ public class connectMysql {
                     Statement stmt = conn.createStatement();
                     String sql = "SELECT * FROM friendGroup WHERE ownerId=" + String.valueOf(userId)+ ";";
                     ResultSet rs = stmt.executeQuery(sql);
-                    MyFileMemory mFileMemory = new MyFileMemory();
+                    utilsOfSDCard mSDCardMemory = new utilsOfSDCard();
                     while (rs.next()) {
-                        mFileMemory.save(MyAppLication.getInstance().getApplicationContext(), rs.getString("groupName"),"friendGroup");
+                        mSDCardMemory.SaveFriendGroup(MyAppLication.getInstance().getApplicationContext(), rs.getString("groupName"),userId);
                     }
                     //Message message = Message.obtain();
                     //message.obj = rs;

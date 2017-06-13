@@ -59,7 +59,7 @@ public class MyFragment2 extends Fragment implements OnClickListener{
         ///init view
         explistview = (PinnedHeaderExpandableListView)getActivity().findViewById(R.id.explistview);
         //////init data
-
+        MyFileMemory mFileMemory = new MyFileMemory();
         for(int i=0;i<10;i++){
             groupData[i] = "分组"+i;
         }

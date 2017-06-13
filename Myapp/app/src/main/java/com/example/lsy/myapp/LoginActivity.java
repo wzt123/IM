@@ -65,6 +65,13 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
                 super.handleMessage(msg);
                 if (msg.obj != null) {
                     ResultSet rs = (ResultSet) msg.obj;
+
+                    utilsOfSDCard mSDCardMemory = new utilsOfSDCard();
+                    if(mSDCardMemory.fileIsExists(MyAppLication.getInstance().getApplicationContext(),login_tel.getText().toString()+"friendGroup")){
+                        connectMysql connection = new connectMysql();
+                        Handler handler = null;
+                        connection.findFriendGroup(handler,sp.getInt("userId",0));
+                    }
                     new AlertDialog.Builder(LoginActivity.this).setTitle("提示").setMessage("登录成功").setPositiveButton("确定", null).show();
                     Intent it1 = new Intent(LoginActivity.this,MainActivity.class);
                     it1.putExtra("temp",1);
