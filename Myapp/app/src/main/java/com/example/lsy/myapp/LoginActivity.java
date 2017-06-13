@@ -1,7 +1,9 @@
 ﻿package com.example.lsy.myapp;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -65,9 +67,9 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
                 super.handleMessage(msg);
                 if (msg.obj != null) {
                     ResultSet rs = (ResultSet) msg.obj;
-
+                    SharedPreferences sp =MyAppLication.getInstance().getSharedPreferences("sp_demo", Context.MODE_PRIVATE);
                     utilsOfSDCard mSDCardMemory = new utilsOfSDCard();
-                    if(mSDCardMemory.fileIsExists(MyAppLication.getInstance().getApplicationContext(),login_tel.getText().toString()+"friendGroup")){
+                    if(mSDCardMemory.fileIsExists(MyAppLication.getInstance().getApplicationContext(),String.valueOf(sp.getInt("userId",0))+"friendGroup")){
                         connectMysql connection = new connectMysql();
                         Handler handler = null;
                         connection.findFriendGroup(handler,sp.getInt("userId",0));
