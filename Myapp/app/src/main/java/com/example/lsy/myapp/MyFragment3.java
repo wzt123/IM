@@ -10,6 +10,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,6 +44,11 @@ public class MyFragment3 extends Fragment implements OnClickListener {
         if(sp.getInt("userId",0)!=0) {
             TextView login_text = (TextView) getActivity().findViewById(R.id.login_text);
             login_text.setText(sp.getString("userName", "Hello world"));
+            MyFileMemory mmyFileMemory = new MyFileMemory();
+            if(mmyFileMemory.read(MyAppLication.getInstance().getApplicationContext(),"friendGroup")==null){
+                connectMysql connection = new connectMysql();
+                connection.findFriendGroup(handler);
+            }
         }
     }
     public void onClick(View v){
@@ -55,6 +61,7 @@ public class MyFragment3 extends Fragment implements OnClickListener {
                     builder.setMessage("确定要退出登录么？");
 
                     builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                        Handler handler;
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
 
@@ -123,6 +130,9 @@ public class MyFragment3 extends Fragment implements OnClickListener {
         mEditor.remove("userName");
         mEditor.remove("userPassword");
         mEditor.commit();
+        TextView login_text = (TextView) getActivity().findViewById(R.id.login_text);
+        login_text.setText("登录");
+
     }
 
 }

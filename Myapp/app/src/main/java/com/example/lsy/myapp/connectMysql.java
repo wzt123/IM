@@ -25,10 +25,12 @@ public class connectMysql {
 
     private int userId;
 
-    public connectMysql(){
+    public connectMysql()
+    {
         SharedPreferences sp =MyAppLication.getInstance().getSharedPreferences("sp_demo", Context.MODE_PRIVATE);
         userId = sp.getInt("userId",0);
     }
+
     public void userRegister(int tel, String name, String pswd,Handler handler)
     {
         new Thread()
@@ -262,11 +264,15 @@ public class connectMysql {
 
                     Connection conn = DriverManager.getConnection(DB_URL,USER,PASS);
                     Statement stmt = conn.createStatement();
-                    String sql = "SELECT * FROM personal WHERE ownerId=" + String.valueOf(userId)+ ";";
+                    String sql = "SELECT * FROM friendGroup WHERE ownerId=" + String.valueOf(userId)+ ";";
                     ResultSet rs = stmt.executeQuery(sql);
-                    Message message = Message.obtain();
-                    message.obj = rs;
-                    handler.sendMessage(message);
+                    MyFileMemory mFileMemory = new MyFileMemory();
+                    while (rs.next()) {
+                        mFileMemory.save(MyAppLication.getInstance().getApplicationContext(), rs.getString("groupName"),"friendGroup");
+                    }
+                    //Message message = Message.obtain();
+                    //message.obj = rs;
+                    //handler.sendMessage(message);
                     //rs.close();
                     stmt.close();
                     conn.close();

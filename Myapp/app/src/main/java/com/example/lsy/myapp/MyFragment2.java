@@ -3,23 +3,21 @@ package com.example.lsy.myapp;
 /**
  * Created by lsy on 2017/5/27.
  */
-import android.support.v4.app.Fragment;
-import android.view.View;
-import android.view.LayoutInflater;
-import android.view.ViewGroup;
-import android.os.Bundle;
-import android.widget.Button;
-import android.widget.RelativeLayout;
-import android.widget.TabHost;
-
-import android.widget.TabWidget;
+import android.content.Intent;
 import android.graphics.Color;
-import android.widget.TextView;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnGroupClickListener;
 import android.widget.ImageButton;
-import android.content.Intent;
-import android.view.View.OnClickListener;
+import android.widget.TabHost;
+import android.widget.TabWidget;
+import android.widget.TextView;
 
 
 public class MyFragment2 extends Fragment implements OnClickListener{
@@ -61,6 +59,7 @@ public class MyFragment2 extends Fragment implements OnClickListener{
         ///init view
         explistview = (PinnedHeaderExpandableListView)getActivity().findViewById(R.id.explistview);
         //////init data
+
         for(int i=0;i<10;i++){
             groupData[i] = "分组"+i;
         }
