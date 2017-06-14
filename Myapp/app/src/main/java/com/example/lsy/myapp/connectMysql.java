@@ -25,10 +25,12 @@ public class connectMysql {
 
     private int userId;
 
-    public connectMysql(){
+    public connectMysql()
+    {
         SharedPreferences sp =MyAppLication.getInstance().getSharedPreferences("sp_demo", Context.MODE_PRIVATE);
         userId = sp.getInt("userId",0);
     }
+
     public void userRegister(int tel, String name, String pswd,Handler handler)
     {
         new Thread()
@@ -251,4 +253,38 @@ public class connectMysql {
         }.start();
     }
 
+    public void findFriendGroup(Handler handler,int userId)
+    {
+        new Thread()
+        {
+            public void run() {
+                try {
+                    //注册驱动
+                    Class.forName("com.mysql.jdbc.Driver");
+
+                    Connection conn = DriverManager.getConnection(DB_URL,USER,PASS);
+                    Statement stmt = conn.createStatement();
+                    String sql = "SELECT * FROM friendGroup WHERE ownerId=" + String.valueOf(userId)+ ";";
+                    ResultSet rs = stmt.executeQuery(sql);
+                    utilsOfSDCard mSDCardMemory = new utilsOfSDCard();
+                    while (rs.next()) {
+                        mSDCardMemory.SaveFriendGroup(MyAppLication.getInstance().getApplicationContext(), rs.getString("groupName"),userId);
+                    }
+                    //Message message = Message.obtain();
+                    //message.obj = rs;
+                    //handler.sendMessage(message);
+                    //rs.close();
+                    stmt.close();
+                    conn.close();
+                    Log.v("yzy", "success to connect!");
+                }catch(ClassNotFoundException e)
+                {
+                    Log.v("yzy", "fail to connect!"+"  "+e.getMessage());
+                } catch (SQLException e)
+                {
+                    Log.v("yzy", "fail to connect!"+"  "+e.getMessage());
+                }
+            };
+        }.start();
+    }
 }
