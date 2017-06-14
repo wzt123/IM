@@ -56,6 +56,11 @@
     <string name="pingbi">屏蔽此人</string>
     <string name="add_a_shortcut">添加桌面快捷方式</string>
     <string name="delete_friend">删除好友</string>
-
+    ///////////
+    <string name="myname">我的名字</string>
+    <string name="mysignature">编辑个性签名</string>
+    <string name="editdata">编辑资料</string>
+    <string name="Personality_business_card">个性名片</string>
+    <string name="signature">是金子总会发光</string>
 
 </resources>

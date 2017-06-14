@@ -22,6 +22,54 @@
             android:textSize="18sp"
             android:layout_centerInParent="true"/>
     </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@color/bg_white">
+        <ImageView
+            android:id="@+id/friend_pic"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:background="@mipmap/ic_launcher_round"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"/>
+        <TextView
+            android:id="@+id/friend_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/friend1_name"
+            android:textColor="@color/text_black"
+            android:textSize="18sp"
+            android:layout_toRightOf="@id/friend_pic"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="10dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/signature"
+            android:textColor="@color/text_black"
+            android:textSize="15sp"
+            android:layout_toRightOf="@id/friend_pic"
+            android:layout_below="@id/friend_name"
+            android:layout_marginLeft="10dp"
+            />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="@drawable/ic_right_gray_arrow"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"/>
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        />
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="48dp"
@@ -154,9 +202,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/shape_red"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="25dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:text="@string/delete_friend"/>
+        android:text="@string/delete_friend"
+        android:textColor="@color/text_black"/>
 
 </LinearLayout>

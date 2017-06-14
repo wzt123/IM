@@ -41,6 +41,7 @@
         <activity android:name=".FindFriendActivity" />
         <activity android:name=".ChatActivity" />
         <activity android:name=".ChatSettingActivity" />
+        <activity android:name=".PersonalDataActivity"></activity>
     </application>
 
 </manifest>
