@@ -1,25 +1,16 @@
-﻿package com.example.lsy.myapp;
+package com.example.lsy.myapp;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
+import android.os.*;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 
 import java.sql.ResultSet;
 
-
-/**
- * A login screen that offers login via email/password.
- */
-public class LoginActivity extends AppCompatActivity implements OnClickListener  {
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
     private EditText login_tel;
     private EditText login_pswd;
     protected Handler handler;
@@ -63,17 +54,11 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
 
         handler = new Handler() {
             @Override
-            public void handleMessage(Message msg) {
+            public void handleMessage(android.os.Message msg) {
                 super.handleMessage(msg);
                 if (msg.obj != null) {
                     ResultSet rs = (ResultSet) msg.obj;
-                    SharedPreferences sp =MyAppLication.getInstance().getSharedPreferences("sp_demo", Context.MODE_PRIVATE);
-                    utilsOfSDCard mSDCardMemory = new utilsOfSDCard();
-                    if(mSDCardMemory.fileIsExists(MyAppLication.getInstance().getApplicationContext(),String.valueOf(sp.getInt("userId",0))+"friendGroup")){
-                        connectMysql connection = new connectMysql();
-                        Handler handler = null;
-                        connection.findFriendGroup(handler,sp.getInt("userId",0));
-                    }
+
                     new AlertDialog.Builder(LoginActivity.this).setTitle("提示").setMessage("登录成功").setPositiveButton("确定", null).show();
                     Intent it1 = new Intent(LoginActivity.this,MainActivity.class);
                     it1.putExtra("temp",1);
@@ -93,4 +78,3 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
 
     }
 }
-

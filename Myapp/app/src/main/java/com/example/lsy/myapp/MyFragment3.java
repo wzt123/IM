@@ -44,7 +44,12 @@ public class MyFragment3 extends Fragment implements OnClickListener {
         if(sp.getInt("userId",0)!=0) {
             TextView login_text = (TextView) getActivity().findViewById(R.id.login_text);
             login_text.setText(sp.getString("userName", "Hello world"));
-
+            utilsOfSDCard mSDCardMemory = new utilsOfSDCard();
+            if(mSDCardMemory.fileIsExists(MyAppLication.getInstance().getApplicationContext(),String.valueOf(sp.getInt("userId",0))+"friendGroup")){
+                connectMysql connection = new connectMysql();
+                Handler handler = null;
+                connection.findFriendGroup(handler,sp.getInt("userId",0));
+            }
         }
     }
     public void onClick(View v){
