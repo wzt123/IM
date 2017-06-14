@@ -86,7 +86,7 @@
                         android:id="@+id/add_friend_ensure"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:onClick="findFriend"
+
                         android:text="查找" />
 
                     <TextView
@@ -107,7 +107,7 @@
                         android:id="@+id/add_friend_add"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:onClick="addFriend"
+
                         android:text="添加" />
                 </LinearLayout>
                 <LinearLayout

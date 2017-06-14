@@ -8,12 +8,14 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TabHost;
 import android.widget.TabWidget;
 import android.widget.TextView;
 
-public class AddFriendsActivity extends AppCompatActivity {
+public class AddFriendsActivity extends AppCompatActivity implements View.OnClickListener{
 
     protected Handler handler;
     private  TextView add_friend_tel ;
@@ -21,11 +23,15 @@ public class AddFriendsActivity extends AppCompatActivity {
     private  EditText add_friend_edit ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_add_friends);
         add_friend_tel = (TextView) findViewById(R.id.add_friend_tel);
         add_friend_name = (TextView) findViewById(R.id.add_friend_name);
         add_friend_edit = (EditText) findViewById(R.id.add_friend_edit);
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_friends);
+        Button add_friend_ensure = (Button) findViewById(R.id.add_friend_ensure);
+        add_friend_ensure.setOnClickListener(this);
+        Button add_friend_add = (Button) findViewById(R.id.add_friend_add);
+        add_friend_add.setOnClickListener(this);
         TabHost th_add=(TabHost)findViewById(R.id.tabhost_add_friends);
         th_add.setup();            //初始化TabHost容器
         //在TabHost创建标签，然后设置：标题／图标／标签页布局
@@ -40,6 +46,18 @@ public class AddFriendsActivity extends AppCompatActivity {
         }
     }
 
+    public void onClick(View v){
+        switch (v.getId()){
+            case R.id.add_friend_ensure:
+                findFriend();
+                break;
+            case R.id.add_friend_add:
+                addFriend();
+                break;
+            default:
+                break;
+        }
+    }
     public void findFriend()
     {
         EditText add_friend_edit = (EditText) findViewById(R.id.add_friend_edit);
