@@ -1,19 +1,18 @@
-﻿package com.example.lsy.myapp;
-
-/**
- * Created by zet on 2017/5/25.
- */
+package com.example.lsy.myapp;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.Handler;
-import android.os.Message;
+import android.os.*;
 import android.util.Log;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+/**
+ * Created by zet on 2017/6/14.
+ */
 
 public class connectMysql {
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
@@ -43,7 +42,7 @@ public class connectMysql {
                     Statement stmt = conn.createStatement();
                     String sql = "insert into  personal(tel,name,pswd) values("+String.valueOf(tel)+","+"'"+name+"'"+","+"'"+pswd+"'"+");";
                     int rs = stmt.executeUpdate(sql);
-                    Message message = Message.obtain();
+                    android.os.Message message = android.os.Message.obtain();
                     message.arg1 = rs;
                     handler.sendMessage(message);
                     //rs.close();
@@ -74,7 +73,7 @@ public class connectMysql {
                     Statement stmt = conn.createStatement();
                     String sql = "SELECT * FROM personal WHERE tel='" + String.valueOf(tel)+"' AND pswd='"+pswd+" ';";
                     ResultSet rs = stmt.executeQuery(sql);
-                    Message message = Message.obtain();
+                    android.os.Message message = android.os.Message.obtain();
                     message.obj = rs;
 
                     SharedPreferences sp = MyAppLication.getInstance().getSharedPreferences("sp_demo", Context.MODE_PRIVATE);
@@ -129,7 +128,7 @@ public class connectMysql {
                     ///mEditor.putString("userPassword",rs.getString("pswd"));
                     mEditor.commit();
 
-                    Message message = Message.obtain();
+                    android.os.Message message = android.os.Message.obtain();
                     message.obj = rs;
                     handler.sendMessage(message);
 
@@ -162,7 +161,7 @@ public class connectMysql {
                     String sql = "insert into  addFriendMsg(requester,accepter,requesterGroup) values("+String.valueOf(userId)+","+String.valueOf
                             (friendId)+","+friendGroup+");";
                     int rs = stmt.executeUpdate(sql);
-                    Message message = Message.obtain();
+                    android.os.Message message = android.os.Message.obtain();
                     message.arg1 = rs;
                     handler.sendMessage(message);
 
@@ -196,7 +195,7 @@ public class connectMysql {
                             (1)+");";
                     int rs = stmt.executeUpdate(sql);
 
-                    Message message = Message.obtain();
+                    android.os.Message message = android.os.Message.obtain();
                     message.arg1 = rs;
                     handler.sendMessage(message);
 
@@ -233,7 +232,7 @@ public class connectMysql {
                     int rs = stmt.executeUpdate(sql);
                     if(rs==1)
                     {
-                        Message message = Message.obtain();
+                        android.os.Message message = android.os.Message.obtain();
                         message.arg1 = 2;
                         handler.sendMessage(message);
                     }
