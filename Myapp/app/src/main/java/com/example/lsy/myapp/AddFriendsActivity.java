@@ -16,11 +16,14 @@ import android.widget.TextView;
 public class AddFriendsActivity extends AppCompatActivity {
 
     protected Handler handler;
-    private  TextView add_friend_tel = (TextView) findViewById(R.id.add_friend_tel);
-    private  TextView add_friend_name = (TextView) findViewById(R.id.add_friend_name);
-    private  EditText add_friend_edit = (EditText) findViewById(R.id.add_friend_edit);
+    private  TextView add_friend_tel ;
+    private  TextView add_friend_name ;
+    private  EditText add_friend_edit ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        add_friend_tel = (TextView) findViewById(R.id.add_friend_tel);
+        add_friend_name = (TextView) findViewById(R.id.add_friend_name);
+        add_friend_edit = (EditText) findViewById(R.id.add_friend_edit);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_friends);
         TabHost th_add=(TabHost)findViewById(R.id.tabhost_add_friends);
@@ -45,7 +48,7 @@ public class AddFriendsActivity extends AppCompatActivity {
             public void handleMessage(Message msg) {
                 super.handleMessage(msg);
                 SharedPreferences sp =MyAppLication.getInstance().getSharedPreferences("sp_demo", Context.MODE_PRIVATE);
-                if(sp.getInt("addingFriendId",0)!=0) {
+                if(sp.getInt("addingFriendId",0)==0) {
                     add_friend_tel.setText(sp.getString("addingFriendTel", "假装有这个人的电话"));
                     add_friend_name.setText(sp.getString("addingFriendName", "假装有这个人的名字"));
                 }

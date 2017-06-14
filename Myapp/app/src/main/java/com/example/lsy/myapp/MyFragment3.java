@@ -112,10 +112,10 @@ public class MyFragment3 extends Fragment implements OnClickListener {
 //                    simpledialog.show();
                 }
                 else {
-//                    Intent it = new Intent(getActivity(), LoginActivity.class);
-//                    startActivity(it);
-                    Intent it = new Intent(getActivity(),PersonalDataActivity.class);
+                    Intent it = new Intent(getActivity(), LoginActivity.class);
                     startActivity(it);
+//                    Intent it = new Intent(getActivity(),PersonalDataActivity.class);
+//                    startActivity(it);
                     //关闭第一个Activit
                 }
                 break;

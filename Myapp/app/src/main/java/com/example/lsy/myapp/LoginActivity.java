@@ -61,9 +61,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             public void handleMessage(android.os.Message msg) {
                 super.handleMessage(msg);
                 if (msg.obj != null) {
-
                     ResultSet rs = (ResultSet) msg.obj;
-
                     new AlertDialog.Builder(LoginActivity.this).setTitle("提示").setMessage("登录成功").setPositiveButton("确定", null).show();
                     Intent it1 = new Intent(LoginActivity.this,MainActivity.class);
                     it1.putExtra("temp",1);

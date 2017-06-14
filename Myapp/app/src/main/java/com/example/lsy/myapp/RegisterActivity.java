@@ -2,9 +2,7 @@ package com.example.lsy.myapp;
 
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -61,15 +59,6 @@ public class RegisterActivity extends AppCompatActivity {
                     Intent it = new Intent(RegisterActivity.this,LoginActivity.class);
                     startActivity(it);
                     finish();
-                }
-                else if(msg.obj != null)
-                {
-                    SharedPreferences sp = MyAppLication.getInstance().getSharedPreferences("sp_demo", Context.MODE_PRIVATE);
-                    SharedPreferences.Editor mEditor = sp.edit();
-                    if(sp.getInt("userId",0)!=0)
-                    {
-                        connection.addFriendGroup(handler);
-                    }
                 }
                 else
                 {

@@ -82,7 +82,7 @@ public class utilsOfSDCard {
     {
         try {
             File SDCardFile = Environment.getExternalStorageDirectory();
-            File file = new File(SDCardFile, Integer.toString(userId)+"friendGroup.txt");
+            File file = new File(SDCardFile, Integer.toString(userId)+"friend.txt");
             FileOutputStream fos;
 
             fos = new FileOutputStream(file);
@@ -112,9 +112,9 @@ public class utilsOfSDCard {
             if (!TextUtils.isEmpty(readLine)) {
                 String split[] = readLine.split("###");
                 String friendGroup[] = new String[split.length];
-                for(int i=0;i<split.length;i++)
+                for(int i=0;i<split.length-1;i++)
                 {
-                    friendGroup[i] = split[i];
+                    friendGroup[i] = split[i+1];
                 }
                 return friendGroup;
             }
@@ -129,22 +129,25 @@ public class utilsOfSDCard {
     /**
      *获取好友
      * */
-    public HashMap<String, String> GetFriend(Context context, int userId) {
+    public HashMap[] GetFriend(Context context, int userId) {
         try {
             File sDCardFile = Environment.getExternalStorageDirectory();
-            File file = new File(sDCardFile, Integer.toString(userId)+"friendGroup.txt");
+            File file = new File(sDCardFile, Integer.toString(userId)+"friend.txt");
 
             BufferedReader br = new BufferedReader(new InputStreamReader(
                     new FileInputStream(file)));
             String readLine = br.readLine();
             if (!TextUtils.isEmpty(readLine)) {
-                HashMap<String, String> userInfoMap = new HashMap<String, String>();
                 String data[] = readLine.split("###");
+                HashMap[] friendMap = new HashMap[data.length];
+
                 for(int i=0;i<data.length;i++) {
-                    String[] friendGroup = data[i].split("##");
-                    userInfoMap.put(friendGroup[0],friendGroup[1]);
+                    friendMap[i] = new HashMap<String, Float>();
+                    String[] friend = data[i].split("##");
+                    friendMap[i].put(friend[0],friend[1]);
                 }
-                return userInfoMap;
+
+                return friendMap;
             }
 
         } catch (Exception e) {
