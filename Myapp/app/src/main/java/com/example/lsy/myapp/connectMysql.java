@@ -16,7 +16,7 @@ import java.sql.Statement;
 
 public class connectMysql {
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://115.159.189.144:3306/android";
+    static final String DB_URL = "jdbc:mysql://115.159.189.144:3306/android?characterEncoding=utf-8";
 
     static final String USER = "wzt";
     static final String PASS = "123456";
@@ -26,7 +26,10 @@ public class connectMysql {
     public connectMysql()
     {
         SharedPreferences sp =MyAppLication.getInstance().getSharedPreferences("sp_demo", Context.MODE_PRIVATE);
-        userId = sp.getInt("userId",0);
+        if(sp.getInt("userId",0)!=0)
+        {
+            userId = sp.getInt("userId",0);
+        }
     }
 
     public void userRegister(int tel, String name, String pswd,Handler handler)
@@ -37,24 +40,24 @@ public class connectMysql {
                 try {
                     //注册驱动
                     Class.forName("com.mysql.jdbc.Driver");
-
                     Connection conn = DriverManager.getConnection(DB_URL,USER,PASS);
                     Statement stmt = conn.createStatement();
                     String sql = "insert into  personal(tel,name,pswd) values("+String.valueOf(tel)+","+"'"+name+"'"+","+"'"+pswd+"'"+");";
-                    int rs = stmt.executeUpdate(sql);
+                    int rs = 0;
+                    rs = stmt.executeUpdate(sql);
                     android.os.Message message = android.os.Message.obtain();
                     message.arg1 = rs;
                     handler.sendMessage(message);
                     //rs.close();
                     stmt.close();
                     conn.close();
-                    Log.v("yzy", "success to connect!");
+                    Log.e("yzy", "success to connect!");
                 }catch(ClassNotFoundException e)
                 {
-                    Log.v("yzy", "fail to connect!"+"  "+e.getMessage());
+                    Log.e("yzy", "fail to connect!"+"  "+e.getMessage());
                 } catch (SQLException e)
                 {
-                    Log.v("yzy", "fail to connect!"+"  "+e.getMessage());
+                    Log.e("yzy", "fail to connect!"+"  "+e.getMessage());
                 }
             };
         }.start();
@@ -130,11 +133,10 @@ public class connectMysql {
 
                     android.os.Message message = android.os.Message.obtain();
                     message.obj = rs;
-                    handler.sendMessage(message);
-
                     rs.close();
                     stmt.close();
                     conn.close();
+                    handler.sendMessage(message);
                     Log.v("yzy", "success to connect!");
                 }catch(ClassNotFoundException e)
                 {
@@ -159,15 +161,14 @@ public class connectMysql {
                     Connection conn = DriverManager.getConnection(DB_URL,USER,PASS);
                     Statement stmt = conn.createStatement();
                     String sql = "insert into  addFriendMsg(requester,accepter,requesterGroup) values("+String.valueOf(userId)+","+String.valueOf
-                            (friendId)+","+friendGroup+");";
+                            (friendId)+",'"+friendGroup+"');";
                     int rs = stmt.executeUpdate(sql);
                     android.os.Message message = android.os.Message.obtain();
                     message.arg1 = rs;
-                    handler.sendMessage(message);
-
                     //rs.close();
                     stmt.close();
                     conn.close();
+                    handler.sendMessage(message);
                     Log.v("yzy", "success to connect!");
                 }catch(ClassNotFoundException e)
                 {
@@ -216,8 +217,7 @@ public class connectMysql {
 
     public void addFriendGroup(Handler handler)
     {
-        SharedPreferences sp =MyAppLication.getInstance().getSharedPreferences("sp_demo", Context.MODE_PRIVATE);
-        userId = sp.getInt("userId",0);
+
         new Thread()
         {
             public void run() {

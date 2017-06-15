@@ -3,7 +3,12 @@ package com.example.lsy.myapp;
 /**
  * Created by lsy on 2017/5/27.
  */
+
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -23,8 +28,7 @@ import android.widget.TextView;
 public class MyFragment2 extends Fragment implements OnClickListener{
     /////
     private PinnedHeaderExpandableListView explistview;
-    private String[][] childrenData = new String[10][10];
-    private String[] groupData = new String[10];
+
     private int expandFlag = -1;//控制列表的展开
     private PinnedHeaderExpandableAdapter adapter;
     ///////
@@ -60,19 +64,48 @@ public class MyFragment2 extends Fragment implements OnClickListener{
         explistview = (PinnedHeaderExpandableListView)getActivity().findViewById(R.id.explistview);
         //////init data
 
+        SharedPreferences sp =MyAppLication.getInstance().getSharedPreferences("sp_demo", Context.MODE_PRIVATE);
         utilsOfSDCard friendGroup = new utilsOfSDCard();
-
-
-        for(int i=0;i<10;i++){
-            groupData[i] = "分组"+i;
-            for(int j=0;j<10;j++){
-                childrenData[i][j] = "好友"+i+"-"+j;
+        if(sp.getInt("userId",0)!=0) {
+            String Group[] = friendGroup.GetFriendGroup(MyAppLication.getInstance().getApplicationContext(), sp.getInt("userId", 0));
+            //HashMap friend[] = friendGroup.GetFriend(MyAppLication.getInstance().getApplicationContext(), sp.getInt("userId", 0));
+            String[][] childrenData = new String[Group.length-1][1];
+            String[] groupData = new String[Group.length-1];
+            for (int i = 0; i < Group.length-1; i++) {
+                groupData[i] = Group[i];
             }
+//            for(int j=0;j<Group.length;j++)
+//            {
+//                int z=0;
+//                for(int i=0;i<friend.length;i++)
+//                {
+//                    if(friend[i].get(Group[j])!=null){
+//                        childrenData[j][z++]= (String) friend[i].get(Group[j]);
+//                    }
+//                }
+//            }
+
+            //设置悬浮头部VIEW
+            explistview.setHeaderView(getActivity().getLayoutInflater().inflate(R.layout.group_head,explistview, false));
+            adapter = new PinnedHeaderExpandableAdapter(childrenData, groupData,getActivity().getApplicationContext(),explistview);
+            explistview.setAdapter(adapter);
         }
-        //设置悬浮头部VIEW
-        explistview.setHeaderView(getActivity().getLayoutInflater().inflate(R.layout.group_head,explistview, false));
-        adapter = new PinnedHeaderExpandableAdapter(childrenData, groupData,getActivity().getApplicationContext(),explistview);
-        explistview.setAdapter(adapter);
+        else
+        {
+            String[][] childrenData = new String[1][1];
+            String[] groupData = new String[1];
+            explistview.setHeaderView(getActivity().getLayoutInflater().inflate(R.layout.group_head,explistview, false));
+            adapter = new PinnedHeaderExpandableAdapter(childrenData, groupData,getActivity().getApplicationContext(),explistview);
+            explistview.setAdapter(adapter);
+            new AlertDialog.Builder(getActivity()).setTitle("提示").setMessage("请登录").setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Intent it = new Intent(getActivity(), LoginActivity.class);
+                    startActivity(it);
+                }
+            }).show();
+        }
+
     }
     public void onClick(View v){
         switch (v.getId()){

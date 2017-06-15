@@ -86,28 +86,30 @@
                         android:id="@+id/add_friend_ensure"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:onClick="findFriend"
+
                         android:text="查找" />
 
                     <TextView
                         android:id="@+id/add_friend_tel"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="TextView"
+                        android:text="好友电话"
+                        android:textColor="@color/text_black"
                         android:layout_weight="0.07" />
 
                     <TextView
                         android:id="@+id/add_friend_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="TextView"
+                        android:text="好友名字"
+                        android:textColor="@color/text_black"
                         android:layout_weight="0.07" />
 
                     <Button
                         android:id="@+id/add_friend_add"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:onClick="addFriend"
+
                         android:text="添加" />
                 </LinearLayout>
                 <LinearLayout
