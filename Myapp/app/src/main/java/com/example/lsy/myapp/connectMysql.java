@@ -305,11 +305,11 @@ public class connectMysql {
                         int persionB = rs.getInt("persionB");
                         if(persionA == userId)
                         {
-                            mSDCardMemory.SaveFriend(MyAppLication.getInstance().getApplicationContext(),rs.getString("persionBName"),rs.getString("persionAGroup"),userId);
+                            mSDCardMemory.SaveFriend(MyAppLication.getInstance().getApplicationContext(),rs.getString("persionBName"),rs.getString("persionAGroup"),rs.getInt("persionB"),userId);
                         }
                         else if(persionB == userId)
                         {
-                            mSDCardMemory.SaveFriend(MyAppLication.getInstance().getApplicationContext(), rs.getString("persionAName"),rs.getString("persionBGroup"),userId);
+                            mSDCardMemory.SaveFriend(MyAppLication.getInstance().getApplicationContext(), rs.getString("persionAName"),rs.getString("persionBGroup"),rs.getInt("persionA"),userId);
                         }
                     }
                     //Message message = Message.obtain();
