@@ -143,9 +143,9 @@ public class utilsOfSDCard {
                 String data[] = readLine.split("###");
                 //HashMap[] friendMap = new HashMap[data.length];
                 String[] friendMap = new String[data.length];
-                for(int i=0;i<data.length;i++) {
+                for(int i=0;i<data.length-1;i++) {
 
-                    String[] friend = data[i].split("##");
+                    String[] friend = data[i+1].split("##");
                     friendMap[i]=friend[1];
                 }
 
