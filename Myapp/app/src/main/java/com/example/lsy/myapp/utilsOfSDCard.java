@@ -60,6 +60,8 @@ public class utilsOfSDCard {
         try {
             File SDCardFile = Environment.getExternalStorageDirectory();
             File file = new File(SDCardFile, Integer.toString(userId)+"friendGroup.txt");
+//            File SDCardFile = Environment.getExternalStorageDirectory();
+//            File file = new File(SDCardFile, Integer.toString(userId)+"friend.txt");
             FileOutputStream fos;
 
             fos = new FileOutputStream(file);
@@ -82,12 +84,12 @@ public class utilsOfSDCard {
     {
         try {
             File SDCardFile = Environment.getExternalStorageDirectory();
-            File file = new File(SDCardFile, Integer.toString(userId)+"friend.txt");
+            File file = new File(SDCardFile, Integer.toString(userId)+"friend1.txt");
             FileOutputStream fos;
 
-            fos = new FileOutputStream(file);
+            fos =new FileOutputStream(file);
 
-            String data = "###"+friendGroup+"##"+"friendname" ;
+            String data ="###"+friendGroup+"##"+friendname ;
             fos.write(data.getBytes());
             fos.flush();
             fos.close();
@@ -129,22 +131,22 @@ public class utilsOfSDCard {
     /**
      *获取好友
      * */
-    public HashMap[] GetFriend(Context context, int userId) {
+    public String[] GetFriend(Context context, int userId) {
         try {
             File sDCardFile = Environment.getExternalStorageDirectory();
-            File file = new File(sDCardFile, Integer.toString(userId)+"friend.txt");
+            File file = new File(sDCardFile, Integer.toString(userId)+"friend1.txt");
 
             BufferedReader br = new BufferedReader(new InputStreamReader(
                     new FileInputStream(file)));
             String readLine = br.readLine();
             if (!TextUtils.isEmpty(readLine)) {
                 String data[] = readLine.split("###");
-                HashMap[] friendMap = new HashMap[data.length];
-
+                //HashMap[] friendMap = new HashMap[data.length];
+                String[] friendMap = new String[data.length];
                 for(int i=0;i<data.length;i++) {
-                    friendMap[i] = new HashMap<String, Float>();
+
                     String[] friend = data[i].split("##");
-                    friendMap[i].put(friend[0],friend[1]);
+                    friendMap[i]=friend[1];
                 }
 
                 return friendMap;
