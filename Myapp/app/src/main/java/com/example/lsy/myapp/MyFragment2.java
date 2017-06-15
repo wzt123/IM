@@ -10,29 +10,32 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnGroupClickListener;
 import android.widget.ImageButton;
+import android.widget.PopupWindow;
 import android.widget.TabHost;
 import android.widget.TabWidget;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
-public class MyFragment2 extends Fragment implements OnClickListener{
-    /////
+public class MyFragment2 extends Fragment implements OnClickListener,AdapterView.OnItemLongClickListener{
     private PinnedHeaderExpandableListView explistview;
-
     private int expandFlag = -1;//控制列表的展开
     private PinnedHeaderExpandableAdapter adapter;
+    private Context mContext;
     ///////
-
     public MyFragment2(){};
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = null;
@@ -43,14 +46,12 @@ public class MyFragment2 extends Fragment implements OnClickListener{
         super.onActivityCreated(savedInstanceState);
         ImageButton add_friends = (ImageButton) getActivity().findViewById(R.id.add_friends);
         add_friends.setOnClickListener(this);
-        Button button_sousuo=(Button) getActivity().findViewById(R.id.button_sousuo);
-        button_sousuo.setOnClickListener(this);
-
+        Button friend_sousuo=(Button) getActivity().findViewById(R.id.friend_sousuo);
+        friend_sousuo.setOnClickListener(this);
         //////////////////////////////tabHost/////////////////////
         TabHost th=(TabHost)getActivity().findViewById(R.id.tabhost);
         th.setup();            //初始化TabHost容器
         //在TabHost创建标签，然后设置：标题／图标／标签页布局
-
         th.addTab(th.newTabSpec("tab1").setIndicator("好友",null).setContent(R.id.tab1));
         th.addTab(th.newTabSpec("tab2").setIndicator("群组",null).setContent(R.id.tab2));
         th.addTab(th.newTabSpec("tab3").setIndicator("公众号",null).setContent(R.id.tab3));
@@ -62,8 +63,8 @@ public class MyFragment2 extends Fragment implements OnClickListener{
         }
         ///init view
         explistview = (PinnedHeaderExpandableListView)getActivity().findViewById(R.id.explistview);
+        explistview.setOnItemLongClickListener(this);
         //////init data
-
         SharedPreferences sp =MyAppLication.getInstance().getSharedPreferences("sp_demo", Context.MODE_PRIVATE);
         utilsOfSDCard friendGroup = new utilsOfSDCard();
         if(sp.getInt("userId",0)!=0) {
@@ -104,7 +105,6 @@ public class MyFragment2 extends Fragment implements OnClickListener{
                     startActivity(it);
                 }
             }).show();
-
         }
 
     }
@@ -114,14 +114,19 @@ public class MyFragment2 extends Fragment implements OnClickListener{
                 Intent it1 = new Intent(getActivity(),AddFriendsActivity.class);
                 startActivity(it1);
                 break;
-            case R.id.button_sousuo:
+            case R.id.friend_sousuo:
                 Intent it2 = new Intent(getActivity(),FindFriendActivity.class);
                 startActivity(it2);
                 break;
             default:break;
         }
     }
-
+    @Override
+    public boolean onItemLongClick(AdapterView<?> parent, View v, int position, long id) {
+        Intent intent=new Intent(getActivity(),GroupSettingActivity.class);
+        startActivity(intent);
+        return true;
+    }
 
     class GroupClickListener implements OnGroupClickListener{
         @Override
@@ -147,5 +152,38 @@ public class MyFragment2 extends Fragment implements OnClickListener{
             return true;
         }
     }
-
+//    private void initPopWindow(View v,int position) {
+//        View view = LayoutInflater.from(getParentFragment().getContext()).inflate(R.layout.item_pop, null, false);
+//        Button btn_xixi = (Button) view.findViewById(R.id.group_setting);
+//        //1.构造一个PopupWindow，参数依次是加载的View，宽高
+//        final PopupWindow popWindow = new PopupWindow(view,
+//                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
+//
+//        popWindow.setAnimationStyle(R.anim.anim_pop);  //设置加载动画
+//
+//        //这些为了点击非PopupWindow区域，PopupWindow会消失的，如果没有下面的
+//        //代码的话，你会发现，当你把PopupWindow显示出来了，无论你按多少次后退键
+//        //PopupWindow并不会关闭，而且退不出程序，加上下述代码可以解决这个问题
+//        popWindow.setTouchable(true);
+//        popWindow.setTouchInterceptor(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//                return false;
+//                // 这里如果返回true的话，touch事件将被拦截
+//                // 拦截后 PopupWindow的onTouchEvent不被调用，这样点击外部区域无法dismiss
+//            }
+//        });
+//        popWindow.setBackgroundDrawable(new ColorDrawable(0x00000000));    //要为popWindow设置一个背景才有效
+//        //设置popupWindow显示的位置，参数依次是参照View，x轴的偏移量，y轴的偏移量
+//        popWindow.showAsDropDown(v, 50, 0);
+//
+//        //设置popupWindow里的按钮的事件
+//        btn_xixi.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent=new Intent(getActivity(),LoginActivity.class);
+//                startActivity(intent);
+//            }
+//        });
+//    }
 }

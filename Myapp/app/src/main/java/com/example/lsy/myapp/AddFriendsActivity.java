@@ -32,6 +32,9 @@ public class AddFriendsActivity extends AppCompatActivity implements View.OnClic
         Button add_friend_add = (Button) findViewById(R.id.add_friend_add);
         add_friend_add.setOnClickListener(this);
         TabHost th_add=(TabHost)findViewById(R.id.tabhost_add_friends);
+        add_friend_tel = (TextView) findViewById(R.id.add_friend_tel);
+        add_friend_name = (TextView) findViewById(R.id.add_friend_name);
+        add_friend_edit = (EditText) findViewById(R.id.add_friend_edit);
         th_add.setup();            //初始化TabHost容器
         //在TabHost创建标签，然后设置：标题／图标／标签页布局
         th_add.addTab(th_add.newTabSpec("tab1").setIndicator("找人",null).setContent(R.id.tab1));

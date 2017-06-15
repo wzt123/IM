@@ -16,13 +16,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
 public class MyFragment3 extends Fragment implements OnClickListener {
-
+    private Button tuichu;
     public MyFragment3(){};
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = null;
@@ -39,6 +40,13 @@ public class MyFragment3 extends Fragment implements OnClickListener {
         games.setOnClickListener(this);
         RelativeLayout arounding=(RelativeLayout)getActivity().findViewById(R.id.arounding);
         arounding.setOnClickListener(this);
+        tuichu=(Button)getActivity().findViewById(R.id.button_tuichu);
+        tuichu.setOnClickListener(this);
+        if(judgeLogin()){
+            tuichu.setVisibility(View.VISIBLE);
+        }else {
+            tuichu.setVisibility(View.GONE);
+        }
 
         SharedPreferences sp =MyAppLication.getInstance().getSharedPreferences("sp_demo", Context.MODE_PRIVATE);
         if(sp.getInt("userId",0)!=0) {
@@ -60,60 +68,8 @@ public class MyFragment3 extends Fragment implements OnClickListener {
         switch (v.getId()){
             case R.id.head_pic:
                 if(judgeLogin()){
-//<<<<<<< HEAD
-//                    Intent it = new Intent(getActivity(),PersonalDataActivity.class);
-//                    startActivity(it);
-////                    AlertDialog.Builder  builder=new AlertDialog.Builder(getContext());
-////                    builder.setMessage("确定要退出登录么？");
-////
-////                    builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-////                        @Override
-////                        public void onClick(DialogInterface dialog, int which) {
-////
-////                        }
-////                    }).setPositiveButton("确定", new DialogInterface.OnClickListener() {
-////                                @Override
-////                                public void onClick(DialogInterface dialog, int which) {
-////                                    LogOut();
-//=======
-//                    Intent it = new Intent(getActivity(),MyDataActivity.class);
-//                    startActivity(it);
-                    AlertDialog.Builder  builder=new AlertDialog.Builder(getContext());
-                    builder.setMessage("确定要退出登录么？");
-
-                    builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                        Handler handler;
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-
-                        }
-                    }).setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    LogOut();
-                                }
-                            }).create();             //创建AlertDialog对象
-
-                    //builder创建对话框对象AlertDialog
-                    AlertDialog simpledialog=builder.create();
-                    simpledialog.show();
-//                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext(),R.style.AlertDialog);
-//                    builder.setMessage("撤销该记录?").setCancelable(false).setTitle("提示")
-//                            .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-//                                public void onClick(DialogInterface dialog, int id) {
-//                                    dialog.cancel();
-//                                }
-//                            })
-//                            .setNegativeButton("取消", new DialogInterface.OnClickListener() {
-//                                public void onClick(DialogInterface dialog, int id) {
-//                                    dialog.cancel();
-
-//                                }
-//                            }).create();             //创建AlertDialog对象
-//
-//                    //builder创建对话框对象AlertDialog
-//                    AlertDialog simpledialog=builder.create();
-//                    simpledialog.show();
+                    Intent it = new Intent(getActivity(),PersonalDataActivity.class);
+                    startActivity(it);
                 }
                 else {
                     Intent it = new Intent(getActivity(), LoginActivity.class);
@@ -138,6 +94,24 @@ public class MyFragment3 extends Fragment implements OnClickListener {
                 startActivity(it3);
                 //关闭第一个Activit
                 break;
+            case R.id.button_tuichu:
+                AlertDialog.Builder  builder=new AlertDialog.Builder(getContext());
+                builder.setMessage("确定要退出登录么？");
+                builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                }).setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        LogOut();
+                    }
+                }).create();             //创建AlertDialog对象
+                //builder创建对话框对象AlertDialog
+                AlertDialog simpledialog=builder.create();
+                simpledialog.show();
+                break;
             default:break;
         }
     }
@@ -159,7 +133,7 @@ public class MyFragment3 extends Fragment implements OnClickListener {
         mEditor.commit();
         TextView login_text = (TextView) getActivity().findViewById(R.id.login_text);
         login_text.setText("登录");
-
+        tuichu.setVisibility(View.GONE);
     }
 
 }
