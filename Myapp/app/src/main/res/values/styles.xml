@@ -43,5 +43,12 @@
         <item name="android:centerDark">@color/bg_white</item>
         <item name="android:windowIsTranslucent">true</item>
     </style>
+    <style name="main_menu_animstyle">
+    <item name="android:windowEnterAnimation">@anim/photo_dialog_in_anim</item>
+    <item name="android:windowExitAnimation">@anim/photo_dialog_out_anim</item>
+    </style>
+    <style parent="android:style/Theme.Dialog" name="transparentFrameWindowStyle">
+    <item name="android:windowBackground">@drawable/photo_choose_bg</item>
+    </style>
 
 </resources>

@@ -6,19 +6,14 @@ package com.example.lsy.myapp;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
-import android.support.v7.view.menu.MenuWrapperFactory;
 import android.view.View;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.os.Bundle;
 import android.widget.AdapterView;
-import android.widget.ImageButton;
-import android.widget.RelativeLayout;
-import android.view.View.OnClickListener;
 import android.widget.ListView;
 import java.util.LinkedList;
-import java.util.Map;
-import android.app.Activity;
+
 
 
 public class MyFragment1 extends Fragment {

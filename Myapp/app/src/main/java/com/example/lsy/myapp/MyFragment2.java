@@ -39,8 +39,8 @@ public class MyFragment2 extends Fragment implements OnClickListener{
         super.onActivityCreated(savedInstanceState);
         ImageButton add_friends = (ImageButton) getActivity().findViewById(R.id.add_friends);
         add_friends.setOnClickListener(this);
-        Button button_sousuo=(Button) getActivity().findViewById(R.id.button_sousuo);
-        button_sousuo.setOnClickListener(this);
+        Button friend_sousuo=(Button) getActivity().findViewById(R.id.friend_sousuo);
+        friend_sousuo.setOnClickListener(this);
 
         //////////////////////////////tabHost/////////////////////
         TabHost th=(TabHost)getActivity().findViewById(R.id.tabhost);
@@ -61,11 +61,10 @@ public class MyFragment2 extends Fragment implements OnClickListener{
         //////init data
 
         utilsOfSDCard friendGroup = new utilsOfSDCard();
-        for(int i=0;i<10;i++){
-            groupData[i] = "分组"+i;
-        }
+
 
         for(int i=0;i<10;i++){
+            groupData[i] = "分组"+i;
             for(int j=0;j<10;j++){
                 childrenData[i][j] = "好友"+i+"-"+j;
             }
@@ -81,7 +80,7 @@ public class MyFragment2 extends Fragment implements OnClickListener{
                 Intent it1 = new Intent(getActivity(),AddFriendsActivity.class);
                 startActivity(it1);
                 break;
-            case R.id.button_sousuo:
+            case R.id.friend_sousuo:
                 Intent it2 = new Intent(getActivity(),FindFriendActivity.class);
                 startActivity(it2);
                 break;

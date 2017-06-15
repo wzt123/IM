@@ -304,6 +304,20 @@
             />
 
     </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <Button
+            android:id="@+id/button_tuichu"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_red"
+            android:layout_centerInParent="true"
+            android:text="退出登录"
+            android:visibility="gone"
+            android:clickable="true"/>
+    </RelativeLayout>
+
 
 
 </LinearLayout>

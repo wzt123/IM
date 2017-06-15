@@ -8,22 +8,26 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TabHost;
 import android.widget.TabWidget;
 import android.widget.TextView;
 
-public class AddFriendsActivity extends AppCompatActivity {
+public class AddFriendsActivity extends AppCompatActivity{
 
     protected Handler handler;
-    private  TextView add_friend_tel = (TextView) findViewById(R.id.add_friend_tel);
-    private  TextView add_friend_name = (TextView) findViewById(R.id.add_friend_name);
-    private  EditText add_friend_edit = (EditText) findViewById(R.id.add_friend_edit);
+    private  TextView add_friend_tel;
+    private  TextView add_friend_name;
+    private  EditText add_friend_edit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_friends);
         TabHost th_add=(TabHost)findViewById(R.id.tabhost_add_friends);
+        add_friend_tel = (TextView) findViewById(R.id.add_friend_tel);
+        add_friend_name = (TextView) findViewById(R.id.add_friend_name);
+        add_friend_edit = (EditText) findViewById(R.id.add_friend_edit);
         th_add.setup();            //初始化TabHost容器
         //在TabHost创建标签，然后设置：标题／图标／标签页布局
         th_add.addTab(th_add.newTabSpec("tab1").setIndicator("找人",null).setContent(R.id.tab1));
@@ -36,6 +40,7 @@ public class AddFriendsActivity extends AppCompatActivity {
             tv.setTextSize(16);
         }
     }
+
 
     public void findFriend()
     {
