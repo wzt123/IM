@@ -70,11 +70,14 @@ public class MyFragment2 extends Fragment implements OnClickListener,AdapterView
             String[] friend = friendGroup.GetFriend(MyAppLication.getInstance().getApplicationContext(), sp.getInt("userId", 0));
             String[][] childrenData = new String[Group.length-1][friend.length-1];
             String[] groupData = new String[Group.length-1];
+            int[][] friendId = new int[Group.length-1][friend.length-1];
             for (int i = 0; i < Group.length-1; i++) {
                 groupData[i] = Group[i];
                 for(int j=0;j<friend.length-1;j++)
                 {
-                    childrenData[i][j] = friend[j];
+                    String[] friend1 = friend[j].split("##");
+                    childrenData[i][j] = friend1[0];
+                    friendId[i][j] =  Integer.parseInt(friend1[1]);
                 }
             }
 
