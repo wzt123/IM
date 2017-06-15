@@ -26,6 +26,11 @@ public class connectMysql {
 
     public connectMysql()
     {
+        SharedPreferences sp =MyAppLication.getInstance().getSharedPreferences("sp_demo", Context.MODE_PRIVATE);
+        if(sp.getInt("userId",0)!=0)
+        {
+            userId = sp.getInt("userId",0);
+        }
     }
 
     public void userRegister(int tel, String name, String pswd,Handler handler)
@@ -157,15 +162,14 @@ public class connectMysql {
                     Connection conn = DriverManager.getConnection(DB_URL,USER,PASS);
                     Statement stmt = conn.createStatement();
                     String sql = "insert into  addFriendMsg(requester,accepter,requesterGroup) values("+String.valueOf(userId)+","+String.valueOf
-                            (friendId)+","+friendGroup+");";
+                            (friendId)+",'"+friendGroup+"');";
                     int rs = stmt.executeUpdate(sql);
                     android.os.Message message = android.os.Message.obtain();
                     message.arg1 = rs;
-                    handler.sendMessage(message);
-
                     //rs.close();
                     stmt.close();
                     conn.close();
+                    handler.sendMessage(message);
                     Log.v("yzy", "success to connect!");
                 }catch(ClassNotFoundException e)
                 {
@@ -214,8 +218,7 @@ public class connectMysql {
 
     public void addFriendGroup(Handler handler)
     {
-        SharedPreferences sp =MyAppLication.getInstance().getSharedPreferences("sp_demo", Context.MODE_PRIVATE);
-        userId = sp.getInt("userId",0);
+
         new Thread()
         {
             public void run() {

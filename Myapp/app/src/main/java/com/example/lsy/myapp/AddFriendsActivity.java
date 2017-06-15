@@ -88,8 +88,7 @@ public class AddFriendsActivity extends AppCompatActivity implements View.OnClic
 
     public void addFriend(){
 
-        connectMysql connection = new connectMysql();
-        connection.addFriend(Integer.parseInt(add_friend_edit.getText().toString()),"我的好友",handler);
+
         //connection.findFriendGroup(handler);
         handler = new Handler() {
             @Override
@@ -105,6 +104,9 @@ public class AddFriendsActivity extends AppCompatActivity implements View.OnClic
                 }
             }
         };
+        connectMysql connection = new connectMysql();
+        SharedPreferences sp =MyAppLication.getInstance().getSharedPreferences("sp_demo", Context.MODE_PRIVATE);
+        connection.addFriend(sp.getInt("addingFriendId", 0),"我的好友",handler);
         //connection.addFriend(handler);
     }
 }
