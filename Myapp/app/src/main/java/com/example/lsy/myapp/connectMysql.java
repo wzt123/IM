@@ -271,7 +271,51 @@ public class connectMysql {
                     //Message message = Message.obtain();
                     //message.obj = rs;
                     //handler.sendMessage(message);
-                    //rs.close();
+                    rs.close();
+                    stmt.close();
+                    conn.close();
+                    Log.v("yzy", "success to connect!");
+                }catch(ClassNotFoundException e)
+                {
+                    Log.v("yzy", "fail to connect!"+"  "+e.getMessage());
+                } catch (SQLException e)
+                {
+                    Log.v("yzy", "fail to connect!"+"  "+e.getMessage());
+                }
+            };
+        }.start();
+    }
+
+    public void showFriend(Handler handler,int userId)
+    {
+        new Thread()
+        {
+            public void run() {
+                try {
+                    //注册驱动
+                    Class.forName("com.mysql.jdbc.Driver");
+
+                    Connection conn = DriverManager.getConnection(DB_URL,USER,PASS);
+                    Statement stmt = conn.createStatement();
+                    String sql = "SELECT * FROM friend WHERE persionA= " + String.valueOf(userId)+" OR persionB="+String.valueOf(userId)+";";
+                    ResultSet rs = stmt.executeQuery(sql);
+                    utilsOfSDCard mSDCardMemory = new utilsOfSDCard();
+                    while (rs.next()) {
+                        int persionA = rs.getInt("persionA");
+                        int persionB = rs.getInt("persionB");
+                        if(persionA == userId)
+                        {
+                            mSDCardMemory.SaveFriend(MyAppLication.getInstance().getApplicationContext(),rs.getString("persionBName"),rs.getString("persionAGroup"),userId);
+                        }
+                        else if(persionB == userId)
+                        {
+                            mSDCardMemory.SaveFriend(MyAppLication.getInstance().getApplicationContext(), rs.getString("persionAName"),rs.getString("persionBGroup"),userId);
+                        }
+                    }
+                    //Message message = Message.obtain();
+                    //message.obj = rs;
+                    //handler.sendMessage(message);
+                    rs.close();
                     stmt.close();
                     conn.close();
                     Log.v("yzy", "success to connect!");

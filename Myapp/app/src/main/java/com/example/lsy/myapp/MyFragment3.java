@@ -53,11 +53,15 @@ public class MyFragment3 extends Fragment implements OnClickListener {
             TextView login_text = (TextView) getActivity().findViewById(R.id.login_text);
             login_text.setText(sp.getString("userName", "Hello world"));
             utilsOfSDCard friendGroupMemory = new utilsOfSDCard();
-            if(friendGroupMemory.fileIsExists(MyAppLication.getInstance().getApplicationContext(),String.valueOf(sp.getInt("userId",0))+"friendGroup")){
-                connectMysql connection = new connectMysql();
-                Handler handler = null;
+            connectMysql connection = new connectMysql();
+            Handler handler = null;
+            //if(friendGroupMemory.fileIsExists(MyAppLication.getInstance().getApplicationContext(),String.valueOf(sp.getInt("userId",0))+"friendGroup.txt")){
                 connection.findFriendGroup(handler,sp.getInt("userId",0));
-            }
+            //}
+            //if(friendGroupMemory.fileIsExists(MyAppLication.getInstance().getApplicationContext(),String.valueOf(sp.getInt("userId",0))+"friend.txt"))
+            //{
+                connection.showFriend(handler,sp.getInt("userId",0));
+            //}
         }
     }
     public void onClick(View v){
