@@ -25,8 +25,7 @@ public class AddFriendsActivity extends AppCompatActivity implements View.OnClic
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_friends);
-        add_friend_tel = (TextView) findViewById(R.id.add_friend_tel);
-        add_friend_name = (TextView) findViewById(R.id.add_friend_name);
+
         add_friend_edit = (EditText) findViewById(R.id.add_friend_edit);
         Button add_friend_ensure = (Button) findViewById(R.id.add_friend_ensure);
         add_friend_ensure.setOnClickListener(this);
@@ -61,14 +60,25 @@ public class AddFriendsActivity extends AppCompatActivity implements View.OnClic
     public void findFriend()
     {
         EditText add_friend_edit = (EditText) findViewById(R.id.add_friend_edit);
+        add_friend_tel = (TextView) findViewById(R.id.add_friend_tel);
+        add_friend_name = (TextView) findViewById(R.id.add_friend_name);
         handler = new Handler() {
             @Override
             public void handleMessage(Message msg) {
                 super.handleMessage(msg);
                 SharedPreferences sp =MyAppLication.getInstance().getSharedPreferences("sp_demo", Context.MODE_PRIVATE);
-                if(sp.getInt("addingFriendId",0)==0) {
-                    add_friend_tel.setText(sp.getString("addingFriendTel", "假装有这个人的电话"));
-                    add_friend_name.setText(sp.getString("addingFriendName", "假装有这个人的名字"));
+                if(msg.obj!=null) {
+                    if (sp.getInt("addingFriendId", 0) != 0) {
+                        //add_friend_tel.setText("123");
+                        //add_friend_name.setText("123");
+                        add_friend_tel.setText(String.valueOf(sp.getInt("addingFriendTel", 0)));
+                        add_friend_name.setText(sp.getString("addingFriendName", "没有这个人"));
+                    }
+                }
+                else
+                {
+                    add_friend_tel.setText("");
+                    add_friend_name.setText("没有这个人");
                 }
             }
         };

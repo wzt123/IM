@@ -129,11 +129,10 @@ public class connectMysql {
 
                     android.os.Message message = android.os.Message.obtain();
                     message.obj = rs;
-                    handler.sendMessage(message);
-
                     rs.close();
                     stmt.close();
                     conn.close();
+                    handler.sendMessage(message);
                     Log.v("yzy", "success to connect!");
                 }catch(ClassNotFoundException e)
                 {
