@@ -128,30 +128,30 @@ public class MyFragment2 extends Fragment implements OnClickListener,AdapterView
         return true;
     }
 
-    class GroupClickListener implements OnGroupClickListener{
-        @Override
-        public boolean onGroupClick(ExpandableListView parent, View v,
-                                    int groupPosition, long id) {
-            if (expandFlag == -1) {
-                // 展开被选的group
-                explistview.expandGroup(groupPosition);
-                // 设置被选中的group置于顶端
-                explistview.setSelectedGroup(groupPosition);
-                expandFlag = groupPosition;
-            } else if (expandFlag == groupPosition) {
-                explistview.collapseGroup(expandFlag);
-                expandFlag = -1;
-            } else {
-                explistview.collapseGroup(expandFlag);
-                // 展开被选的group
-                explistview.expandGroup(groupPosition);
-                // 设置被选中的group置于顶端
-                explistview.setSelectedGroup(groupPosition);
-                expandFlag = groupPosition;
-            }
-            return true;
-        }
-    }
+//    class GroupClickListener implements OnGroupClickListener{
+//        @Override
+//        public boolean onGroupClick(ExpandableListView parent, View v,
+//                                    int groupPosition, long id) {
+//            if (expandFlag == -1) {
+//                // 展开被选的group
+//                explistview.expandGroup(groupPosition);
+//                // 设置被选中的group置于顶端
+//                explistview.setSelectedGroup(groupPosition);
+//                expandFlag = groupPosition;
+//            } else if (expandFlag == groupPosition) {
+//                explistview.collapseGroup(expandFlag);
+//                expandFlag = -1;
+//            } else {
+//                explistview.collapseGroup(expandFlag);
+//                // 展开被选的group
+//                explistview.expandGroup(groupPosition);
+//                // 设置被选中的group置于顶端
+//                explistview.setSelectedGroup(groupPosition);
+//                expandFlag = groupPosition;
+//            }
+//            return true;
+//        }
+//    }
 //    private void initPopWindow(View v,int position) {
 //        View view = LayoutInflater.from(getParentFragment().getContext()).inflate(R.layout.item_pop, null, false);
 //        Button btn_xixi = (Button) view.findViewById(R.id.group_setting);
