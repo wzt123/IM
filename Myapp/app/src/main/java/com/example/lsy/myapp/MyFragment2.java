@@ -10,6 +10,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -109,8 +110,20 @@ public class MyFragment2 extends Fragment implements OnClickListener,AdapterView
                 }
             }).show();
         }
+        //////////////child点击事件///////////////
+        explistview.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+
+            @Override
+            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+                Intent intent = new Intent(getActivity(),PersonalDataActivity.class);
+                String[][] ChildData=new String[1][1];
+                startActivity(intent);
+                return true;
+            }
+        });
 
     }
+    ////////
     public void onClick(View v){
         switch (v.getId()){
             case R.id.add_friends:
