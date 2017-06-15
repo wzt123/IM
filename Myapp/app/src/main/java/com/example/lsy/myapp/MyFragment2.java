@@ -4,7 +4,9 @@ package com.example.lsy.myapp;
  * Created by lsy on 2017/5/27.
  */
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -87,6 +89,22 @@ public class MyFragment2 extends Fragment implements OnClickListener{
             explistview.setHeaderView(getActivity().getLayoutInflater().inflate(R.layout.group_head,explistview, false));
             adapter = new PinnedHeaderExpandableAdapter(childrenData, groupData,getActivity().getApplicationContext(),explistview);
             explistview.setAdapter(adapter);
+        }
+        else
+        {
+            String[][] childrenData = new String[1][1];
+            String[] groupData = new String[1];
+            explistview.setHeaderView(getActivity().getLayoutInflater().inflate(R.layout.group_head,explistview, false));
+            adapter = new PinnedHeaderExpandableAdapter(childrenData, groupData,getActivity().getApplicationContext(),explistview);
+            explistview.setAdapter(adapter);
+            new AlertDialog.Builder(getActivity()).setTitle("提示").setMessage("请登录").setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Intent it = new Intent(getActivity(), LoginActivity.class);
+                    startActivity(it);
+                }
+            }).show();
+
         }
 
     }
