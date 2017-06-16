@@ -27,6 +27,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
+
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -48,6 +50,10 @@ public class PersonalDataActivity extends AppCompatActivity implements View.OnCl
         setContentView(R.layout.activity_personal_data);
         headphoto=(ImageButton)findViewById(R.id.head_photo);
         headphoto.setOnClickListener(this);
+        Button edit=(Button)findViewById(R.id.edit_mydata);
+        edit.setOnClickListener(this);
+        RelativeLayout btn_close=(RelativeLayout)findViewById(R.id.btn_close);
+        btn_close.setOnClickListener(this);
     }
 
     @Override
@@ -63,6 +69,16 @@ public class PersonalDataActivity extends AppCompatActivity implements View.OnCl
             case R.id.button_paizhao:
                 getPicFromCamera();
                 dialog.cancel();
+                break;
+            case R.id.edit_mydata:
+                Intent intent=new Intent(PersonalDataActivity.this,EditMydata.class);
+                startActivity(intent);
+                break;
+            case R.id.btn_close:
+                Intent intent1=new Intent(PersonalDataActivity.this,MainActivity.class);
+                intent1.putExtra("temp",2);
+                startActivity(intent1);
+                finish();
                 break;
             default:break;
         }

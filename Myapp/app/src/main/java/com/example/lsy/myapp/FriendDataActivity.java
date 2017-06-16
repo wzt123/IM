@@ -28,6 +28,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
+
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -43,16 +45,20 @@ public class FriendDataActivity extends AppCompatActivity implements View.OnClic
     private Uri imageUri;
     private Uri localUri = null;
     public static File tempFile;
-    private int friendId_send;
+    private String friendName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_friend_data);
 //        headphoto=(ImageButton)findViewById(R.id.head_photo);
 //        headphoto.setOnClickListener(this);
-        friendId_send=getIntent().getIntExtra("friendId_send",0);
+
         Button send_message=(Button)findViewById(R.id.btn_send);
         send_message.setOnClickListener(this);
+
+        friendName=getIntent().getStringExtra("friendName");
+        TextView friendname=(TextView)findViewById(R.id.friendname);
+        friendname.setText(friendName);
     }
 
     @Override
@@ -71,8 +77,8 @@ public class FriendDataActivity extends AppCompatActivity implements View.OnClic
 //                break;
             case R.id.btn_send:
                 Intent intent=new Intent(FriendDataActivity.this,ChatActivity.class);
+                intent.putExtra("friendName",friendName);
                 startActivity(intent);
-                //new AlertDialog.Builder(FriendDataActivity.this).setTitle("提示").setMessage(str).show();
                 break;
 
             default:break;

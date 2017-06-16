@@ -29,6 +29,7 @@
                 android:layout_toRightOf="@id/personal_data_close"
                 android:layout_alignTop="@id/personal_data_close"
                 android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
                 android:textColor="@color/bg_white"/>
         </RelativeLayout>
         <RelativeLayout
@@ -61,7 +62,7 @@
 
             </RelativeLayout>
             <TextView
-                android:id="@+id/myname"
+                android:id="@+id/friendname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"

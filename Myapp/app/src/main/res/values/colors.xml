@@ -14,6 +14,7 @@
     /////////////////背景色
     <color name="bg_white">#fcfcfc</color>
     <color name="bg_gray">#d1d0d0</color>
+    <color name="bg_gray2">#e9e8e8</color>
     <color name="bg_gray1">#80ececec</color>
     <color name="bg_white_a">#c8fcfcfc</color>
     <color name="bg_white_b">#f7f4f4</color>
