@@ -40,18 +40,21 @@ public class MyFragment1 extends Fragment implements View.OnClickListener{
         message_find.setOnClickListener(this);
         mData = new LinkedList<Message>();
         if (friendName!=null){
-            mData.add(new Message(friendName,"你是狗么?", R.mipmap.ic_launcher_round));
+            mData.add(new Message(friendName,"你是狗么?",1, R.mipmap.ic_launcher_round));
         }
-
         mAdapter = new MessageAdapter((LinkedList<Message>) mData,mContext);
         messagelist.setAdapter(mAdapter);
         messagelist.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // TODO Auto-generated method stub
+
                 String friendName=mData.get(position).getaName();
                 Intent it1=new Intent(getActivity(),ChatActivity.class);
                 it1.putExtra("friendName",friendName);
+                String name=mData.get(position).getaName();
+                int topic = mData.get(position).getTopic();
+                it1.putExtra("topic",topic);
                 startActivity(it1);
             }
 

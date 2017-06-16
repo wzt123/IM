@@ -3,6 +3,16 @@
     <string name="bottom_btn_message">消息</string>
     <string name="bottom_btn_friends">好友</string>
     <string name="bottom_btn_personal">我的</string>
+
+    <string name="connectionError">An error occurred connecting to</string>
+    <string name='dateFormat'>dd/MM/yy \'at\' HH:mm:ss</string>
+    <string name="timestamp">&lt;br/&gt; &lt;small&gt; %1$s &lt;/small&gt;</string>
+    <string name="connectedto">Connected to </string>
+    <string name="disconnected">Disconnected from</string>
+    <string name="no_status">Unknown connection status to</string>
+    <string name="connecting">Connecting to</string>
+    <string name="disconnecting">Disconnecting from</string>
+
     <string name="login">登录</string>
     <string name="attention">特别关心</string>
     <string name="arounding">附近</string>
