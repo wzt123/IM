@@ -11,16 +11,21 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.os.Bundle;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import java.util.LinkedList;
 
 
 
-public class MyFragment1 extends Fragment {
+public class MyFragment1 extends Fragment implements View.OnClickListener,AdapterView.OnItemLongClickListener{
     private Context mContext;
     private LinkedList<Message> mData = null;
     private MessageAdapter mAdapter = null;
     private ListView messagelist;
+    private String friendName;
+    private int sendTopic;
+    private Button btn_delete;
+    private Message message;
 
     public MyFragment1(){};
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -31,23 +36,31 @@ public class MyFragment1 extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState){
         super.onActivityCreated(savedInstanceState);
         mContext = getContext();
+        Bundle bundle = getArguments();
+        friendName=bundle.getString("friendName");
+        sendTopic=bundle.getInt("sendTopic");
         messagelist = (ListView) getActivity().findViewById(R.id.message_list);
+        messagelist.setOnItemLongClickListener(this);
+        Button message_find=(Button)getActivity().findViewById(R.id.button_sousuo);
+        message_find.setOnClickListener(this);
+
         mData = new LinkedList<Message>();
-        mData.add(new Message("李四", "你是狗么?",14241425, R.mipmap.ic_launcher_round));
-        //mData.add(new Message("牛说", "你是牛么?", R.mipmap.ic_launcher_round));
-        //mData.add(new Message("鸭说", "你是鸭么?", R.mipmap.ic_launcher_round));
-        //mData.add(new Message("鱼说", "你是鱼么?", R.mipmap.ic_launcher_round));
-        //mData.add(new Message("马说", "你是马么?", R.mipmap.ic_launcher_round));
+        if (friendName!=null){
+            message=new Message(friendName,"你是狗么?",sendTopic, R.mipmap.ic_launcher_round);
+            mData.add(message);
+        }
         mAdapter = new MessageAdapter((LinkedList<Message>) mData,mContext);
         messagelist.setAdapter(mAdapter);
         messagelist.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // TODO Auto-generated method stub
+
+                String friendName=mData.get(position).getaName();
+                Intent it1=new Intent(getActivity(),ChatActivity.class);
+                it1.putExtra("friendName",friendName);
                 String name=mData.get(position).getaName();
                 int topic = mData.get(position).getTopic();
-                Intent it1=new Intent(getActivity(),ChatActivity.class);
-                it1.putExtra("name",name);
                 it1.putExtra("topic",topic);
                 startActivity(it1);
             }
@@ -56,4 +69,30 @@ public class MyFragment1 extends Fragment {
 
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.button_sousuo:
+                Intent intent=new Intent(getActivity(),FindFriendActivity.class);
+                startActivity(intent);
+                break;
+            default:break;
+        }
+    }
+
+    @Override
+    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+
+        btn_delete=(Button) getActivity().findViewById(R.id.btn_delete);
+        btn_delete.setVisibility(View.VISIBLE);
+        btn_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mData.remove(message);
+                mAdapter.notifyDataSetChanged();
+                messagelist.setAdapter(mAdapter);
+            }
+        });
+        return true;
+    }
 }

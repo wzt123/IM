@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:background="@mipmap/ic_launcher_round"/>
     <TextView
-        android:id="@+id/txt_name"
+        android:id="@+id/new_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/friend1_name"
@@ -18,24 +18,33 @@
         android:textSize="18sp"
         android:layout_marginLeft="10dp"/>
     <TextView
-        android:id="@+id/txt_speak"
+        android:id="@+id/new_signature"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/message_text"
         android:textColor="@color/text_gray"
-        android:layout_below="@+id/txt_name"
-        android:layout_alignLeft="@+id/txt_name"
+        android:layout_below="@+id/new_name"
+        android:layout_alignLeft="@+id/new_name"
         android:textSize="18sp"/>
     <Button
         android:id="@+id/btn_delete"
         android:layout_width="80dp"
         android:layout_height="40dp"
-        android:background="@drawable/shape_red"
+        android:background="@drawable/shape_blue"
         android:layout_centerVertical="true"
         android:layout_alignParentRight="true"
-        android:text="删除"
+        android:text="同意"
         android:textSize="18sp"
         android:layout_marginRight="5dp"
+        android:visibility="visible"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="不同意"
+        android:textColor="@color/bg_gray"
+        android:textSize="18sp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
         android:visibility="gone"/>
 
 </RelativeLayout>

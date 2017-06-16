@@ -20,6 +20,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.TabHost;
 import android.widget.TabWidget;
 import android.widget.TextView;
@@ -32,6 +33,10 @@ public class MyFragment2 extends Fragment implements OnClickListener,AdapterView
     private Context mContext;
     private int[][] friendId;
     int friendId_send;
+    private String friendName;
+    private String[][] childrenData;
+    private int sendTopic;
+    int[][] topic;
     ///////
     public MyFragment2(){};
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -45,6 +50,8 @@ public class MyFragment2 extends Fragment implements OnClickListener,AdapterView
         add_friends.setOnClickListener(this);
         Button friend_sousuo=(Button) getActivity().findViewById(R.id.friend_sousuo);
         friend_sousuo.setOnClickListener(this);
+        RelativeLayout newfriend=(RelativeLayout)getActivity().findViewById(R.id.new_friends) ;
+        newfriend.setOnClickListener(this);
         //////////////////////////////tabHost/////////////////////
         TabHost th=(TabHost)getActivity().findViewById(R.id.tabhost);
         th.setup();            //初始化TabHost容器
@@ -68,10 +75,10 @@ public class MyFragment2 extends Fragment implements OnClickListener,AdapterView
             String Group[] = friendGroup.GetFriendGroup(MyAppLication.getInstance().getApplicationContext(), sp.getInt("userId", 0));
             //HashMap friend[] = friendGroup.GetFriend(MyAppLication.getInstance().getApplicationContext(), sp.getInt("userId", 0));
             String[] friend = friendGroup.GetFriend(MyAppLication.getInstance().getApplicationContext(), sp.getInt("userId", 0));
-            String[][] childrenData = new String[Group.length-1][friend.length-1];
+            childrenData = new String[Group.length-1][friend.length-1];
             String[] groupData = new String[Group.length-1];
             int[][] friendId = new int[Group.length-1][friend.length-1];
-            int[][] topic = new int[Group.length-1][friend.length-1];
+            topic = new int[Group.length-1][friend.length-1];
             for (int i = 0; i < Group.length-1; i++) {
                 groupData[i] = Group[i];
                 for(int j=0;j<friend.length-1;j++)
@@ -121,8 +128,10 @@ public class MyFragment2 extends Fragment implements OnClickListener,AdapterView
             @Override
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
                 Intent intent = new Intent(getActivity(),FriendDataActivity.class);
-                friendId_send=friendId[groupPosition][childPosition];
-                intent.putExtra("friendId",friendId_send);
+                friendName=childrenData[groupPosition][childPosition];
+                sendTopic=topic[groupPosition][childPosition];
+                intent.putExtra("friendName",friendName);
+                intent.putExtra("sendTopic",sendTopic);
                 startActivity(intent);
                 return true;
             }
@@ -139,6 +148,10 @@ public class MyFragment2 extends Fragment implements OnClickListener,AdapterView
             case R.id.friend_sousuo:
                 Intent it2 = new Intent(getActivity(),FindFriendActivity.class);
                 startActivity(it2);
+                break;
+            case R.id.new_friends:
+                Intent it3 = new Intent(getActivity(),NewFriendActivity.class);
+                startActivity(it3);
                 break;
             default:break;
         }

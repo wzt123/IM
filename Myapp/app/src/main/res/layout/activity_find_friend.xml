@@ -9,15 +9,17 @@ tools:context="com.example.lsy.myapp.MainActivity">
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@color/bg_white">
-        <Button
+        <TextView
             android:id="@+id/friend_find_start"
             android:layout_width="60dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:background="@color/bg_white"
             android:layout_alignParentRight="true"
             android:text="@string/start"
             android:textColor="@color/bg_topbar"
-            android:textSize="18sp"/>
+            android:layout_centerVertical="true"
+            android:textSize="18sp"
+            android:paddingLeft="10dp"/>
         <EditText
             android:id="@+id/find_friend_edit"
             android:layout_width="match_parent"
