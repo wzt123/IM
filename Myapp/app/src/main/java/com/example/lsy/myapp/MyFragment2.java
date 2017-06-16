@@ -20,6 +20,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.TabHost;
 import android.widget.TabWidget;
 import android.widget.TextView;
@@ -49,6 +50,8 @@ public class MyFragment2 extends Fragment implements OnClickListener,AdapterView
         add_friends.setOnClickListener(this);
         Button friend_sousuo=(Button) getActivity().findViewById(R.id.friend_sousuo);
         friend_sousuo.setOnClickListener(this);
+        RelativeLayout newfriend=(RelativeLayout)getActivity().findViewById(R.id.new_friends) ;
+        newfriend.setOnClickListener(this);
         //////////////////////////////tabHost/////////////////////
         TabHost th=(TabHost)getActivity().findViewById(R.id.tabhost);
         th.setup();            //初始化TabHost容器
@@ -145,6 +148,10 @@ public class MyFragment2 extends Fragment implements OnClickListener,AdapterView
             case R.id.friend_sousuo:
                 Intent it2 = new Intent(getActivity(),FindFriendActivity.class);
                 startActivity(it2);
+                break;
+            case R.id.new_friends:
+                Intent it3 = new Intent(getActivity(),NewFriendActivity.class);
+                startActivity(it3);
                 break;
             default:break;
         }

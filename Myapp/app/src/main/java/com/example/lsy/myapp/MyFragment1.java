@@ -17,13 +17,15 @@ import java.util.LinkedList;
 
 
 
-public class MyFragment1 extends Fragment implements View.OnClickListener{
+public class MyFragment1 extends Fragment implements View.OnClickListener,AdapterView.OnItemLongClickListener{
     private Context mContext;
     private LinkedList<Message> mData = null;
     private MessageAdapter mAdapter = null;
     private ListView messagelist;
     private String friendName;
     private int sendTopic;
+    private Button btn_delete;
+    private Message message;
 
     public MyFragment1(){};
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -38,11 +40,14 @@ public class MyFragment1 extends Fragment implements View.OnClickListener{
         friendName=bundle.getString("friendName");
         sendTopic=bundle.getInt("sendTopic");
         messagelist = (ListView) getActivity().findViewById(R.id.message_list);
+        messagelist.setOnItemLongClickListener(this);
         Button message_find=(Button)getActivity().findViewById(R.id.button_sousuo);
         message_find.setOnClickListener(this);
+
         mData = new LinkedList<Message>();
         if (friendName!=null){
-            mData.add(new Message(friendName,"你是狗么?",sendTopic, R.mipmap.ic_launcher_round));
+            message=new Message(friendName,"你是狗么?",sendTopic, R.mipmap.ic_launcher_round);
+            mData.add(message);
         }
         mAdapter = new MessageAdapter((LinkedList<Message>) mData,mContext);
         messagelist.setAdapter(mAdapter);
@@ -73,5 +78,21 @@ public class MyFragment1 extends Fragment implements View.OnClickListener{
                 break;
             default:break;
         }
+    }
+
+    @Override
+    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+
+        btn_delete=(Button) getActivity().findViewById(R.id.btn_delete);
+        btn_delete.setVisibility(View.VISIBLE);
+        btn_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mData.remove(message);
+                mAdapter.notifyDataSetChanged();
+                messagelist.setAdapter(mAdapter);
+            }
+        });
+        return true;
     }
 }
