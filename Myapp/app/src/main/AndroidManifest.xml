@@ -44,7 +44,8 @@
         <activity android:name=".ChatActivity" />
         <activity android:name=".ChatSettingActivity" />
         <activity android:name=".PersonalDataActivity" />
-        <activity android:name=".GroupSettingActivity"></activity>
+        <activity android:name=".GroupSettingActivity" />
+        <activity android:name=".FriendDataActivity"></activity>
     </application>
 
 </manifest>
