@@ -39,10 +39,10 @@ public class ImInit {
     private String myTopic;
     private ScheduledExecutorService scheduler;
     private MqttConnectOptions options;
-    private void ImInit(int topic,Handler handler) {
+    public void Init(Handler handler) {
         SharedPreferences sp =MyAppLication.getInstance().getSharedPreferences("sp_demo", Context.MODE_PRIVATE);
         this.clientId=String.valueOf(sp.getInt("userId",0));
-        this.myTopic = String.valueOf(topic);
+        //this.myTopic = String.valueOf(topic);
         try {
             // host为主机名，test为clientid即连接MQTT的客户端ID，一般以客户端唯一标识符表示，MemoryPersistence设置clientid的保存形式，默认为以内存保存
             client = new MqttClient(host, clientId, new MemoryPersistence());
@@ -91,6 +91,10 @@ public class ImInit {
         }
     }
 
+    public MqttClient getClient()
+    {
+        return this.client;
+    }
     private void startReconnect(Handler handler) {
         scheduler = Executors.newSingleThreadScheduledExecutor();
         scheduler.scheduleAtFixedRate(new Runnable() {

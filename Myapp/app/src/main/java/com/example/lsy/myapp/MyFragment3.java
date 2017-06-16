@@ -55,13 +55,17 @@ public class MyFragment3 extends Fragment implements OnClickListener {
             utilsOfSDCard friendGroupMemory = new utilsOfSDCard();
             connectMysql connection = new connectMysql();
             Handler handler = null;
-            //if(friendGroupMemory.fileIsExists(MyAppLication.getInstance().getApplicationContext(),String.valueOf(sp.getInt("userId",0))+"friendGroup.txt")){
-                connection.findFriendGroup(handler,sp.getInt("userId",0));
-            //}
-            //if(friendGroupMemory.fileIsExists(MyAppLication.getInstance().getApplicationContext(),String.valueOf(sp.getInt("userId",0))+"friend.txt"))
-            //{
-                connection.showFriend(handler,sp.getInt("userId",0));
-            //}
+            connection.findFriendGroup(handler,sp.getInt("userId",0));
+            connection.showFriend(handler,sp.getInt("userId",0));
+            ImInit mimInit = new ImInit();
+            mimInit.Init(handler);
+
+            ImMsg mimMsg = new ImMsg(mimInit.getClient());
+            boolean status = mimMsg.getMqttConnectStatus();
+            mimMsg.subscribe(14251426);
+            mimMsg.publish(14251426,"hello world");
+
+
         }
     }
     public void onClick(View v){

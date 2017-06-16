@@ -15,7 +15,8 @@ public class ImMsg {
     private int i = 1;
     private MqttClient client;
 
-    public ImMsg(){
+    public ImMsg(MqttClient mclient){
+        this.client = mclient;
     }
     public boolean getMqttConnectStatus()
     {
