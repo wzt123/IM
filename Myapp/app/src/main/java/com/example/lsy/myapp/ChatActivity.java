@@ -38,12 +38,15 @@ public class ChatActivity extends AppCompatActivity {
         String name=intent.getStringExtra("name");
         String friendName=getIntent().getStringExtra("friendName");
         chatfriendname.setText(friendName);
+        ///////////////////传递topic//////////////
+        int sendTopic=intent.getIntExtra("sendTopic",0);
         ImageButton chatback=(ImageButton)findViewById(R.id.chat_back) ;
         chatback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent it=new Intent(ChatActivity.this,MainActivity.class);
                 it.putExtra("friendName",friendName);
+                it.putExtra("sendTopic",sendTopic);
                 startActivity(it);
             }
         });

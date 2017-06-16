@@ -19,7 +19,9 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
     private MyFragment2 fg2;
     private MyFragment3 fg3;
     private FragmentManager fManager;
-    String friendName;
+    private String friendName;
+    private int sendTopic;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         rb3 = (RadioButton) findViewById(R.id.rb_personal);
         int temp=getIntent().getIntExtra("temp",0);
         friendName=getIntent().getStringExtra("friendName");
+        sendTopic=getIntent().getIntExtra("sendTopic",0);
         if(temp==1||temp==2) {
             rb3.setChecked(true);
             rb3.setSelected(true);
@@ -54,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
                     fg1=new MyFragment1();
                     Bundle bundle = new Bundle();
                     bundle.putString("friendName",friendName);
+                    bundle.putInt("sendTopic",sendTopic);
                     fg1.setArguments(bundle);
                     fTransaction.add(R.id.ly_content,fg1);
                 }else {

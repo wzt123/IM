@@ -23,6 +23,7 @@ public class MyFragment1 extends Fragment implements View.OnClickListener{
     private MessageAdapter mAdapter = null;
     private ListView messagelist;
     private String friendName;
+    private int sendTopic;
 
     public MyFragment1(){};
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -35,12 +36,13 @@ public class MyFragment1 extends Fragment implements View.OnClickListener{
         mContext = getContext();
         Bundle bundle = getArguments();
         friendName=bundle.getString("friendName");
+        sendTopic=bundle.getInt("sendTopic");
         messagelist = (ListView) getActivity().findViewById(R.id.message_list);
         Button message_find=(Button)getActivity().findViewById(R.id.button_sousuo);
         message_find.setOnClickListener(this);
         mData = new LinkedList<Message>();
         if (friendName!=null){
-            mData.add(new Message(friendName,"你是狗么?",1, R.mipmap.ic_launcher_round));
+            mData.add(new Message(friendName,"你是狗么?",sendTopic, R.mipmap.ic_launcher_round));
         }
         mAdapter = new MessageAdapter((LinkedList<Message>) mData,mContext);
         messagelist.setAdapter(mAdapter);

@@ -46,6 +46,7 @@ public class FriendDataActivity extends AppCompatActivity implements View.OnClic
     private Uri localUri = null;
     public static File tempFile;
     private String friendName;
+    private int sendTopic;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +60,7 @@ public class FriendDataActivity extends AppCompatActivity implements View.OnClic
         friendName=getIntent().getStringExtra("friendName");
         TextView friendname=(TextView)findViewById(R.id.friendname);
         friendname.setText(friendName);
+        sendTopic=getIntent().getIntExtra("sendTopic",0);
     }
 
     @Override
@@ -78,6 +80,7 @@ public class FriendDataActivity extends AppCompatActivity implements View.OnClic
             case R.id.btn_send:
                 Intent intent=new Intent(FriendDataActivity.this,ChatActivity.class);
                 intent.putExtra("friendName",friendName);
+                intent.putExtra("sendTopic",sendTopic);
                 startActivity(intent);
                 break;
 

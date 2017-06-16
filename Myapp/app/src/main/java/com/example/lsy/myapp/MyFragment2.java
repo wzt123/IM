@@ -34,6 +34,8 @@ public class MyFragment2 extends Fragment implements OnClickListener,AdapterView
     int friendId_send;
     private String friendName;
     private String[][] childrenData;
+    private int sendTopic;
+    int[][] topic;
     ///////
     public MyFragment2(){};
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -73,7 +75,7 @@ public class MyFragment2 extends Fragment implements OnClickListener,AdapterView
             childrenData = new String[Group.length-1][friend.length-1];
             String[] groupData = new String[Group.length-1];
             int[][] friendId = new int[Group.length-1][friend.length-1];
-            int[][] topic = new int[Group.length-1][friend.length-1];
+            topic = new int[Group.length-1][friend.length-1];
             for (int i = 0; i < Group.length-1; i++) {
                 groupData[i] = Group[i];
                 for(int j=0;j<friend.length-1;j++)
@@ -124,7 +126,9 @@ public class MyFragment2 extends Fragment implements OnClickListener,AdapterView
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
                 Intent intent = new Intent(getActivity(),FriendDataActivity.class);
                 friendName=childrenData[groupPosition][childPosition];
+                sendTopic=topic[groupPosition][childPosition];
                 intent.putExtra("friendName",friendName);
+                intent.putExtra("sendTopic",sendTopic);
                 startActivity(intent);
                 return true;
             }
