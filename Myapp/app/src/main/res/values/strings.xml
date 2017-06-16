@@ -12,6 +12,11 @@
     <string name="no_status">Unknown connection status to</string>
     <string name="connecting">Connecting to</string>
     <string name="disconnecting">Disconnecting from</string>
+    <string name="notifyTitle_connectionLost">MQTT Client Has Lost Connection</string>
+    <string name="messageRecieved">Received message %1$s &lt;br/&gt; &lt;small&gt;Topic: %2$s &lt;/small&gt; </string>
+    <string name="notification">%1$s has received %2$s on topic %3$s</string>
+    <string name="connection_lost">%1$s has lost connection to %2$s</string>
+
 
     <string name="login">登录</string>
     <string name="attention">特别关心</string>
