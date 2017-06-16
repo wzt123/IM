@@ -34,7 +34,6 @@ public class PinnedHeaderExpandableAdapter extends BaseExpandableListAdapter imp
     public Object getChild(int groupPosition, int childPosition) {
         return childrenData[groupPosition][childPosition];
     }
-
     @Override
     public long getChildId(int groupPosition, int childPosition) {
         return 0;
@@ -152,4 +151,5 @@ public class PinnedHeaderExpandableAdapter extends BaseExpandableListAdapter imp
             return 0;
         }
     }
+
 }

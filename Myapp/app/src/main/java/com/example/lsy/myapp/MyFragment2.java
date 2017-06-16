@@ -18,6 +18,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ExpandableListView;
 import android.widget.ImageButton;
 import android.widget.TabHost;
 import android.widget.TabWidget;
@@ -29,6 +30,8 @@ public class MyFragment2 extends Fragment implements OnClickListener,AdapterView
     private int expandFlag = -1;//控制列表的展开
     private PinnedHeaderExpandableAdapter adapter;
     private Context mContext;
+    private int[][] friendId;
+    int friendId_send;
     ///////
     public MyFragment2(){};
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -112,8 +115,21 @@ public class MyFragment2 extends Fragment implements OnClickListener,AdapterView
                 }
             }).show();
         }
+        //////////////child点击事件///////////////
+        explistview.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+
+            @Override
+            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+                Intent intent = new Intent(getActivity(),FriendDataActivity.class);
+                friendId_send=friendId[groupPosition][childPosition];
+                intent.putExtra("friendId",friendId_send);
+                startActivity(intent);
+                return true;
+            }
+        });
 
     }
+    ////////
     public void onClick(View v){
         switch (v.getId()){
             case R.id.add_friends:
