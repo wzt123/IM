@@ -33,11 +33,11 @@ public class MyFragment1 extends Fragment {
         mContext = getContext();
         messagelist = (ListView) getActivity().findViewById(R.id.message_list);
         mData = new LinkedList<Message>();
-        mData.add(new Message("狗说", "你是狗么?", R.mipmap.ic_launcher_round));
-        mData.add(new Message("牛说", "你是牛么?", R.mipmap.ic_launcher_round));
-        mData.add(new Message("鸭说", "你是鸭么?", R.mipmap.ic_launcher_round));
-        mData.add(new Message("鱼说", "你是鱼么?", R.mipmap.ic_launcher_round));
-        mData.add(new Message("马说", "你是马么?", R.mipmap.ic_launcher_round));
+        mData.add(new Message("李四", "你是狗么?",14241425, R.mipmap.ic_launcher_round));
+        //mData.add(new Message("牛说", "你是牛么?", R.mipmap.ic_launcher_round));
+        //mData.add(new Message("鸭说", "你是鸭么?", R.mipmap.ic_launcher_round));
+        //mData.add(new Message("鱼说", "你是鱼么?", R.mipmap.ic_launcher_round));
+        //mData.add(new Message("马说", "你是马么?", R.mipmap.ic_launcher_round));
         mAdapter = new MessageAdapter((LinkedList<Message>) mData,mContext);
         messagelist.setAdapter(mAdapter);
         messagelist.setOnItemClickListener(new AdapterView.OnItemClickListener(){
@@ -45,8 +45,10 @@ public class MyFragment1 extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // TODO Auto-generated method stub
                 String name=mData.get(position).getaName();
+                int topic = mData.get(position).getTopic();
                 Intent it1=new Intent(getActivity(),ChatActivity.class);
                 it1.putExtra("name",name);
+                it1.putExtra("topic",topic);
                 startActivity(it1);
             }
 

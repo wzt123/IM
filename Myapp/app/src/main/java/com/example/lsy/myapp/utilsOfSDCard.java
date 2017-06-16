@@ -80,7 +80,7 @@ public class utilsOfSDCard {
     /**
      * 存储好友
      */
-    public boolean SaveFriend(Context context,String friendname,String friendGroup,int friendId,int userId)
+    public boolean SaveFriend(Context context,String friendname,String friendGroup,int friendId,int topic,int userId)
     {
         try {
             File SDCardFile = Environment.getExternalStorageDirectory();
@@ -89,7 +89,7 @@ public class utilsOfSDCard {
 
             fos =new FileOutputStream(file);
 
-            String data ="###"+friendGroup+"##"+friendname+"##"+friendId ;
+            String data ="###"+friendGroup+"##"+friendname+"##"+String.valueOf(friendId)+"##"+String.valueOf(userId) ;
             fos.write(data.getBytes());
             fos.flush();
             fos.close();
@@ -145,7 +145,7 @@ public class utilsOfSDCard {
                 String[] friendMap = new String[data.length];
                 for(int i=0;i<data.length-1;i++) {
                     String[] friend = data[i+1].split("##");
-                    friendMap[i]=friend[1]+"##"+friend[2];
+                    friendMap[i]=friend[1]+"##"+friend[2]+"##"+friend[3];
                 }
 
                 return friendMap;

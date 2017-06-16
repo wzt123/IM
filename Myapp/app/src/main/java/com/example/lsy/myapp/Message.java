@@ -8,20 +8,23 @@ public class Message {
     private String aName;
     private String aSpeak;
     private int aIcon;
-
+    private int topic;
     public Message() {
     }
 
-    public Message(String aName, String aSpeak, int aIcon) {
+    public Message(String aName, String aSpeak,int atopic, int aIcon) {
         this.aName = aName;
         this.aSpeak = aSpeak;
         this.aIcon = aIcon;
+        this.topic = atopic;
     }
 
     public String getaName() {
         return aName;
     }
-
+    public int getTopic() {
+        return topic;
+    }
     public String getaSpeak() {
         return aSpeak;
     }

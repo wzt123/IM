@@ -36,7 +36,9 @@ public class ChatActivity extends AppCompatActivity {
         TextView chatfriendname=(TextView) findViewById(R.id.chat_friend_name) ;
         Intent intent=getIntent();
         String name=intent.getStringExtra("name");
+        int topic = intent.getIntExtra("topic",0);
         chatfriendname.setText(name);
+
         ImageButton chat_setting =(ImageButton) findViewById(R.id.chat_setting);
         chat_setting.setOnClickListener(new View.OnClickListener() {
             @Override

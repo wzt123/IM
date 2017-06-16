@@ -18,8 +18,6 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.ExpandableListView;
-import android.widget.ExpandableListView.OnGroupClickListener;
 import android.widget.ImageButton;
 import android.widget.TabHost;
 import android.widget.TabWidget;
@@ -70,6 +68,7 @@ public class MyFragment2 extends Fragment implements OnClickListener,AdapterView
             String[][] childrenData = new String[Group.length-1][friend.length-1];
             String[] groupData = new String[Group.length-1];
             int[][] friendId = new int[Group.length-1][friend.length-1];
+            int[][] topic = new int[Group.length-1][friend.length-1];
             for (int i = 0; i < Group.length-1; i++) {
                 groupData[i] = Group[i];
                 for(int j=0;j<friend.length-1;j++)
@@ -77,6 +76,7 @@ public class MyFragment2 extends Fragment implements OnClickListener,AdapterView
                     String[] friend1 = friend[j].split("##");
                     childrenData[i][j] = friend1[0];
                     friendId[i][j] =  Integer.parseInt(friend1[1]);
+                    topic[i][j] = Integer.parseInt(friend1[2]);
                 }
             }
 
