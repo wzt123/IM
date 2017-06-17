@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.lsy.myapp">
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
@@ -15,6 +16,9 @@
 
     <!-- 往SDCard写入数据权限 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!--<uses-permission android:name="android.permission.INTERNET" />-->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:name=".MyAppLication"
@@ -24,7 +28,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:testOnly="false"
+        tools:replace="Android:icon, android:theme"
         android:theme="@style/AppTheme">
+        <!--<service android:name="org.eclipse.paho.android.service.MqttService" />-->
+        <service android:name="com.example.lsy.myapp.MQTTService"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -47,7 +54,10 @@
         <activity android:name=".GroupSettingActivity" />
         <activity android:name=".FriendDataActivity" />
         <activity android:name=".EditMydata" />
-        <activity android:name=".NewFriendActivity"></activity>
+        <activity android:name=".NewFriendActivity" />
+
+        <service android:name="org.eclipse.paho.android.service.MqttService" >
+        </service>
     </application>
 
 </manifest>

@@ -1,13 +1,13 @@
 package com.example.lsy.myapp;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-import android.widget.RadioGroup;
-import android.widget.RadioButton;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.content.Context;
-
+import android.support.v7.app.AppCompatActivity;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 
 public class MainActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener{
@@ -22,11 +22,19 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
     private String friendName;
     private int sendTopic;
 
+    //////测试MQTT服务
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Intent mqttServiceIntent = new Intent(this,MQTTService.class);
+        startService(mqttServiceIntent);
+        //bindService(mqttServiceIntent, mServiceConnection,Context.BIND_AUTO_CREATE);
+
+        //mServiceConnection.onServiceConnected();
+        //ibinder.intentPublish("hello","helloZet");
         //fManager = getFragmentManager();
         fManager =getSupportFragmentManager();
         rg_tab_bar = (RadioGroup) findViewById(R.id.rg_tab_bar);
@@ -47,6 +55,7 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
             rb1.setChecked(true);
         }
     }
+
 
     public void onCheckedChanged(RadioGroup group, int checkedId) {
         FragmentTransaction fTransaction = fManager.beginTransaction();

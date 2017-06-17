@@ -5,12 +5,15 @@ package com.example.lsy.myapp;
  */
 
 import android.app.AlertDialog;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,6 +40,11 @@ public class MyFragment2 extends Fragment implements OnClickListener,AdapterView
     private String[][] childrenData;
     private int sendTopic;
     int[][] topic;
+
+
+    //////测试MQTT服务
+    private MQTTService.MyBinder ibinder;
+
     ///////
     public MyFragment2(){};
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -46,6 +54,24 @@ public class MyFragment2 extends Fragment implements OnClickListener,AdapterView
     }
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
+
+        ServiceConnection mServiceConnection = new ServiceConnection() {
+            @Override
+            public void onServiceConnected(ComponentName name, IBinder service) {
+                MQTTService myService = ((MQTTService.MyBinder) service).getMQTTService();
+                myService.publish("helloZet","ZET");
+                //ibinder = (MQTTService.MyBinder)service;
+            }
+
+            @Override
+            public void onServiceDisconnected(ComponentName name) {
+            }
+
+        };
+        //调用服务中的方法
+        getActivity().bindService(new Intent(getActivity(), MQTTService.class), mServiceConnection,Context.BIND_AUTO_CREATE);
+
         ImageButton add_friends = (ImageButton) getActivity().findViewById(R.id.add_friends);
         add_friends.setOnClickListener(this);
         Button friend_sousuo=(Button) getActivity().findViewById(R.id.friend_sousuo);
@@ -138,6 +164,8 @@ public class MyFragment2 extends Fragment implements OnClickListener,AdapterView
         });
 
     }
+
+
     ////////
     public void onClick(View v){
         switch (v.getId()){
@@ -150,6 +178,7 @@ public class MyFragment2 extends Fragment implements OnClickListener,AdapterView
                 startActivity(it2);
                 break;
             case R.id.new_friends:
+               // ibinder.intentPublish("helloZet","zet");
                 Intent it3 = new Intent(getActivity(),NewFriendActivity.class);
                 startActivity(it3);
                 break;
